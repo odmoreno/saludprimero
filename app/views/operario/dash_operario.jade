@@ -1,0 +1,26 @@
+extend ../dash_layout
+
+block navigation 
+	#menu.col-md-3
+		ul.nav.nav-stacked
+			li(role='presentation')
+				a(href='/operario/pacientes')
+					span.glyphicon.glyphicon-user(aria-hidden='true')
+					|  Administrar Pacientes
+			li(role='presentation')
+				a(href='/operario/muestras')
+					span.glyphicon.glyphicon-edit(aria-hidden='true')
+					|  Administrar Muestras
+			li(role='presentation')
+				a(href='/operario/reportes')
+					span.glyphicon.glyphicon-stats(aria-hidden='true')
+					|  Consultar Gráficos Estadísticos
+
+block content 
+	.col-md-9
+
+block list
+	li
+		a(href='/operario/logout')
+			span.glyphicon.glyphicon-off(aria-hidden='true')
+			|  Salir

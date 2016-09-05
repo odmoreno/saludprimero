@@ -1,0 +1,45 @@
+extends dash_user
+
+block content
+	.col-md-9
+		+panel-default("Informacion Centros Medicos")
+			.panel-body
+				.dropdown
+					button#dropdownCentros.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')
+						| Elija un Centro Médico
+						span.caret
+					ul#centro.dropdown-menu(aria-labelledby='dropdownMenu1')
+						if centroslist
+							each centro in centroslist
+								li
+									a(href="#")= centro.nombre
+			#info-med
+				form.form-horizontal
+					.form-group.col-sm-12
+						label.col-sm-2.control-label Nombre:
+						.col-sm-10
+							p#nomCentro.form-control-static
+					.form-group.col-sm-12
+						label.col-sm-2.control-label Horarios de Atención:
+						.col-sm-10
+							p#horarioCentro.form-control-static
+					.form-group.col-sm-12
+						label.col-sm-2.control-label Dirección:
+						.col-sm-10
+							p#dirCentro.form-control-static
+					.form-group.col-sm-12
+						label.col-sm-2.control-label Descripción:
+						.col-sm-10
+							p#descripCentro.form-control-static
+					.form-group.col-sm-12
+						label.col-sm-3.control-label Galería de Imágenes:
+						#imagenes
+							img#img1.img-responsive(src"", style='width:25%;height:25%')
+							img#img2.img-responsive(src"", style='width:25%;height:25%')
+					.form-group.col-sm-12
+						label.col-sm-3.control-label Ubicación del Centro Médico:
+						#mapa
+
+append scripts
+	script
+		include ../../public/javascripts/usuario.js

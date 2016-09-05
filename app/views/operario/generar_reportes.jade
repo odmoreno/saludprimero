@@ -1,0 +1,23 @@
+extend dash_operario
+
+block content 
+	.col-md-9
+		+panel-default("Gráficos Estadísticos")
+			.panel-body
+				.form-group
+					.radio
+						label
+							input(type='radio', name='optradio')
+							| Total de Muestras Asignadas por Laboratorio
+					.radio
+						label
+							input(type='radio', name='optradio')
+							| Total de Muestras Mensuales por Laboratorio
+						form.form-inline.fechaForm
+							.form-group.col-md-6
+								label.control-label(for='pickDesde') Desde:
+								input#pickDesde(type='text')
+							.form-group.col-md-6
+								label.control-label(for='pickHasta') Hasta:
+								input#pickHasta(type='text')
+		button#btnGenerar.col-md-4.col-md-offset-4.btn(type='button') Generar Gráfico

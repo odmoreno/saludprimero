@@ -1,0 +1,27 @@
+extend ../dash_layout
+
+block navigation 
+	#menu.col-md-3
+		ul.nav.nav-stacked
+			li(role='presentation')
+				a(href='/usuario/centros-medicos')
+					span.glyphicon.glyphicon-home(aria-hidden='true')
+					|  Centros Médicos
+			li(role='presentation')
+				a(href='/usuario/examenes')
+					span.glyphicon.glyphicon-list-alt(aria-hidden='true')
+					|  Mis Exámenes
+
+block content 
+	.col-md-9
+
+block list
+	li
+		a(href='/usuario/perfil')
+			span.glyphicon.glyphicon-user(aria-hidden='true')
+			|  Perfil
+	li
+		a(href='/usuario/logout')
+			span.glyphicon.glyphicon-off(aria-hidden='true')
+			|  Salir
+

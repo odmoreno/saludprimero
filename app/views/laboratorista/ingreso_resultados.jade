@@ -1,0 +1,44 @@
+extends dash_lab
+
+block content
+	.col-md-9
+		+panel-default("Muestras")
+			.panel-body
+				.table-responsive
+					table#tblMuestras.table.table-hover
+						thead
+							tr
+								th Codigo
+								th Fecha Toma Muestra
+								th Tipo de Muestra
+								th Paciente
+								th Resultados
+						tbody
+
+							if muestras
+								each muestra in muestras
+									tr
+										td=muestra.codigo
+										td=muestra.fecha
+										td=muestra.tipo
+										td paciente de muestra
+										td 
+											button.btnIngresar.btn(type="button",data-toggle="modal",data-target="#resultado") Ingresar Resultado
+		#resultado.modal.fade(tabindex="-1",role="dialog")
+			.modal-dialog
+				.modal-content
+					.modal-header
+						button.close(type="button",data-dismiss="modal")
+							span(aria-hidden="true") &times;
+							span.sr-only Close
+						h4.modal-title Ingreso de Resultados de Examen
+					.modal-body
+						p#codigoMuestra.hide
+						p#Muestra.hide
+						#resultados
+					.modal-footer
+						button.btn.btn-default(type='button', data-dismiss='modal') Descartar
+						button#btnGuardarResult.btn.btn-default(type='submit') Guardar
+append scripts
+	script
+		include ../../public/javascripts/labResultados.js

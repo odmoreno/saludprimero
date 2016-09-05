@@ -1,0 +1,44 @@
+extends dash_user
+
+block content
+	.col-md-9
+		+panel-default("Examenes Realizados")
+			.table-responsive
+				table#tblExamen.table.table-hover
+					thead
+						tr
+							th Codigo
+							th Fecha de toma de muestra
+							th Tipo de Muestra
+							th Estado
+							th Adjunto
+					tbody
+						if hasExam
+							each examen in examenes
+								tr
+									td=examen.codigo
+									td=examen.fecha
+									td=examen.tipo
+									td
+										.progress
+											if(examen.estado == "Pendiente")
+												.progress-bar.progress-bar-danger(role='progressbar', aria-valuenow='33', aria-valuemin='0', aria-valuemax='100', style='width:33%')
+													| Pendiente
+											else if(examen.estado == "En Espera")
+												.progress-bar.progress-bar-warning(role='progressbar', aria-valuenow='66', aria-valuemin='0', aria-valuemax='100', style='width:66%')
+													| Espera
+											else if(examen.estado == "Listo")
+												.progress-bar.progress-bar-success(role='progressbar', aria-valuenow='100', aria-valuemin='0', aria-valuemax='100', style='width:100%')
+													| Listo
+											else 
+												.progress-bar(role='progressbar', aria-valuenow='0', aria-valuemin='0', aria-valuemax='100', style='width:100%')
+													| Cancelado
+									td 
+										if(examen.estado == "Listo")
+											a(href="#") Ver Adjunto
+
+append scripts
+	script.
+		$(document).ready( function () {
+			$('#tblExamen').DataTable();
+		} );

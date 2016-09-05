@@ -1,0 +1,30 @@
+extends dash_lab
+
+block content
+	.col-md-9
+		+panel-default("Muestras")
+			.panel-body
+				.table-responsive
+					table#tblMuestras.table.table-hover
+						thead
+							tr
+								th Codigo
+								th Fecha Toma Muestra
+								th Tipo de Muestra
+								th Paciente
+								th Recibir
+								th Notificar
+						tbody
+							each muestra in muestras
+								tr
+									td=muestra.codigo
+									td=muestra.fecha
+									td=muestra.tipo
+									td paciente de muestra
+									td
+										button.btnRecibido.btn(type="submit") Recibir
+									td 
+										button.btnNotificar.btn(type="submit") Notificar
+append scripts
+	script
+		include ../../public/javascripts/laboratorista.js

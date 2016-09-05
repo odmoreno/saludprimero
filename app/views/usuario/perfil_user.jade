@@ -1,0 +1,50 @@
+extends dash_user
+
+block content
+	.col-md-9
+			+panel-default("Datos de Usuario")
+				form.form-horizontal(action='/usuario/perfil/editUser', method='post')
+					.row
+						.pull-right.col-md-4
+							img#imgUsuario.img-rounded.img-thumbnail(src='', alt='foto de perfil de usuario')
+						.col-md-10
+							h3 Información General
+							.form-group.form-inline.required
+								label.control-label.col-md-2(for='nombreUsuario') Nombres:
+
+								//input#nombreUsuario.form-control.col-md-6(type='text', required='', maxlength='30',pattern="[a-zA-Z ]+", title="-Solo letras", value="#{usuarioInfoList[0].nombres}", name='nombres')
+								input#nombreUsuario.form-control.col-md-6(type='text', required='', maxlength='30',pattern="[a-zA-Z ]+", title="-Solo letras", name='nombres', value="#{paciente.nombres}")
+							.form-group.form-inline.required
+								label.control-label.col-md-2(for='apellidoUsuario') Apellidos:
+								input#apellidoUsuario.form-control.col-md-6(type='text', required='', maxlength='30',pattern="[a-zA-Z ]+", title="-Solo letras", value="#{paciente.apellidos}", name='apellidos')
+								//input#apellidoUsuario.form-control.col-md-6(type='text', required='', maxlength='30',pattern="[a-zA-Z ]+", title="-Solo letras", value="#{usuarioInfoList[0].apellidos}", name='apellidos')
+							.form-group.form-inline.required
+								label.control-label.col-md-2(for='IDUsuario') Cédula:
+								input#IDUsuario.form-control.col-md-6(type='text', required='', pattern="[0-9]{10}", title="-Solo números", maxlength='10', value="#{paciente.cedula}", name='cedula')
+								//input#IDUsuario.form-control.col-md-6(type='text', required='', pattern="[0-9]{10}", title="-Requiere 10 caracteres\n-Solo números", maxlength='10', value="#{usuarioInfoList[0].cedula}", name='cedula')
+							.form-group.form-inline.required
+								label.control-label.col-md-2(for='emailUsuario') Correo Electrónico:
+								input#emailUsuario.form-control.col-md-6(type='email', required='', maxlength='30', value="#{usuario.email}", name='email', readonly='')
+								//input#emailUsuario.form-control.col-md-6(type='email', required='', maxlength='30', value="#{usuarioInfoList[0].email}", name='email', readonly='')
+							.form-group.form-inline
+								label.control-label.col-md-2(for='dirUsuario') Dirección:
+								input#dirUsuario.form-control.col-md-6(type='text', maxlength='50', value="#{paciente.direccion}", name='direccion')
+								//input#dirUsuario.form-control.col-md-6(type='text', maxlength='50', value="#{usuarioInfoList[0].dir}", name='direccion')
+							.form-group.form-inline
+								label.control-label.col-md-2(for='telUsuario') Teléfonos:
+								input#telUsuario.form-control.col-md-6(type='text', maxlength='15',pattern="[0-9]+", title="-Solo números", value="#{paciente.telefonos[0]}", name='telefono')
+								//input#telUsuario.form-control.col-md-6(type='text', maxlength='15',pattern="[0-9]+", title="-Solo números", value="#{usuarioInfoList[0].telf}", name='telefono')
+					button#btnGuardar.col-md-2.col.btn(type="submit") Guardar Cambios
+				form.form-horizontal(action='/usuario/perfil/newPass', method='post')
+					.row
+						.pull-right.col-md-4
+						.col-md-10
+							h3 Cambiar Contraseña
+							.form-group.form-inline
+								label.control-label.col-md-2(for='passNueva1') Nueva Contraseña:
+								input#passNueva1.form-control.col-md-6(type='password', name='newpassword1')
+							.form-group.form-inline
+								label.control-label.col-md-2(for='passNueva2') Confirme Contraseña:
+								input#passNueva2.form-control.col-md-6(type='password', name='newpassword2')
+
+					button#btnGuardarpass.col-md-2.col.btn(type="submit") Guardar Cambios

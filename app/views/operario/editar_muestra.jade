@@ -1,0 +1,38 @@
+extend dash_operario
+
+block content 
+	.col-md-9
+		+panel-default("Informacion de Muestra")
+			.panel-body
+				form(action='/operario/editar_muestra', method='put')
+					.form-group.col-md-12
+						label.col-md-3.control-label(for='pacientes') Paciente:
+						select#pacientes.col-md-3.form-control
+					.form-group.form-inline
+						.form-group.col-md-6
+							label.col-md-3.control-label(for='centromed') Centro Médico:
+							select#centromed.col-md-3.form-control
+						.form-group.col-md-6
+							label.col-md-3.control-label(for='muestras') Tipo de Muestra:
+							select#muestras("onchange"="cargarExamenes()").col-md-3.form-control
+								option Heces
+								option Sangre
+								option Orina
+						.form-group.col-md-6
+							label.col-md-3.control-label(for='fechaMuestra') Fecha Toma Muestra:
+							input#fechaMuestra.col-md-3.form-control(type='text', required='')
+					.form-group.form-inline.col-md-12
+						label.col-md-3.control-label Exámenes a realizar:
+						div#tblExamen
+					.form-group.form-inline.col-md-6
+						label.col-md-3.control-label(for='laboratorio') Laboratorio:
+						select#laboratorio.col-md-3.form-control
+							option Laboratorio 1
+							option Laboratorio 2
+							option Laboratorio 3
+							option Laboratorio 4
+		button#btnDescartar.col-md-3.btn(type='button') Descartar
+		button#btnGuardar.col-md-3.btn(type='submit') Guardar
+append scripts
+	script
+		include ../../public/javascripts/operario.js

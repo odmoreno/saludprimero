@@ -1,0 +1,54 @@
+extend dash_operario
+
+block content 
+	.col-md-9		
+		+panel-default("Resultados de Busqueda")
+			.panel-body
+				.table-responsive
+					table#tblMuestras.table.table-hover
+						thead
+							tr
+								th Nombres
+								th Apellidos
+								th Cedula
+								th Correo Electrónico
+								th Eliminar
+						tbody
+							if pacientes
+								each paciente in pacientes
+									tr
+										td=paciente.nombres
+										td=paciente.apellidos
+										td=paciente.cedula
+										td=paciente.email
+										td 
+											button.btnEliminar.btn(type="submit") Eliminar
+			button#btnNuevo.col-md-4.btn(type="button",data-toggle="modal",data-target="#nuevoPaciente") Agregar Paciente
+
+		#nuevoPaciente.modal.fade(tabindex="-1",role="dialog")
+			.modal-dialog
+				.modal-content
+					.modal-header
+						button.close(type="button",data-dismiss="modal")
+							span(aria-hidden="true") &times;
+							span.sr-only Close
+						h4.modal-title Registrar Paciente
+					.modal-body
+						form#form-agregar(action='/operario/ingreso-muestras/nuevoPaciente', method='post')
+							.form-group.form-inline
+								label.col-md-3.control-label(for='inputNombre') Nombres:
+								input#inputNombre.form-control.required(type='text', required='', maxlength='30',pattern="[a-zA-Z ]+" ,name='nombre')
+							.form-group.form-inline
+								label.col-md-3.control-label(for='inputApellidos') Apellidos:
+								input#inputApellidos.form-control.required(type='text', required='', maxlength='30',pattern="[a-zA-Z ]+",name='apellido')
+							.form-group.form-inline
+								label.col-md-3.control-label(for='inputCedula') Cédula:
+								input#inputCedula.form-control.required(type='text', required='', pattern="[0-9]{10}", title="Requiere 10caracteres\n-Solo-números", maxlength='10', name='cedula')
+							.form-group.form-inline
+								label.col-md-3.control-label(for='inputEmail') Correo Electrónico:
+								input#inputEmail.form-control.required(type='email', required='', maxlength='30', name='email')
+							button.btn.btn-default(type='button', data-dismiss='modal') Cancelar
+							button.btn.btn-default(type='submit') Registrar
+append scripts
+	script
+		include ../../public/javascripts/operario.js

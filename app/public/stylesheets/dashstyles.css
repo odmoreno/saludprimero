@@ -1,0 +1,62 @@
+html, body {
+  height: 100%;
+}
+
+section {
+	overflow:auto;
+  min-height: 90%;
+	padding: 60px 0 0 0; 
+	margin-bottom: 100px;
+}
+
+#menu{
+	margin-left: -2%;
+}
+
+#menu ul li a {
+  color: #0a161c;
+}
+
+footer {
+  position: relative;
+  margin-top: -100px; /* negative value of footer height */
+  height: 100px;
+  clear:both;
+  padding:2.5% 0;
+  background-color: #0a161c;
+  color: #4d5c63;
+}
+
+button#btnCodigo{
+  vertical-align:center; 
+  margin-bottom: 2%;
+}
+
+.form-group{
+  margin-bottom: 0.75%;
+  margin-top: 0.75%
+}
+
+#btnDescartar, #btnGuardar{
+  margin: 0 12.5%;
+  margin-bottom: 2%;
+}
+
+li.active{
+  background-color: gray;
+  color: white;
+}
+
+.form-group.required label:after {
+  content:"*";
+  color:red;
+}
+
+.progress-bar{
+  color: black;
+}
+
+.img-responsive{
+  float:left;
+  margin: 2%;
+}

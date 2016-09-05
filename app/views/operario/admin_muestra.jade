@@ -1,0 +1,36 @@
+extend dash_operario
+
+block content 
+	.col-md-9			
+		+panel-default("Resultados de Busqueda")
+			.panel-body
+				.table-responsive
+					table#tblMuestras.table.table-hover
+						thead
+							tr
+								th Codigo
+								th Fecha Toma Muestra
+								th Tipo de Muestra
+								th Paciente
+								th Estado
+								th Editar
+								th Eliminar
+						tbody
+								each muestra in muestras
+									tr
+										td=muestra.codigo
+										td=muestra.fecha
+										td=muestra.tipo
+										td=muestra.paciente
+										td=muestra.estado
+										td
+											button.btnEditar.btn(type="submit") Editar
+										td
+											button.btnEliminarMuestra.btn(type="submit") Eliminar
+			a(href='/operario/ingreso-muestras').col-md-4.col-md-offset-4.btn(type='button').btn-primary
+				|Agregar Muestra
+			//button#btnNuevo.col-md-4.btn(type="button", href = "/operario/ingreso-muestras") Agregar Muestra
+			//button#btnEliminar.col-md-4.col-md-offset-4.btn(data-toggle="modal",data-target="#alerta") Eliminar
+append scripts
+	script
+		include ../../public/javascripts/operario.js

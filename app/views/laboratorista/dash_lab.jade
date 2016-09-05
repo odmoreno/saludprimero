@@ -1,0 +1,22 @@
+extend ../dash_layout
+
+block navigation 
+	#menu.col-md-3
+		ul.nav.nav-stacked
+			li(role='presentation')
+				a(href='/laboratorista/recepcion-muestras')
+					span.glyphicon.glyphicon-plus-sign(aria-hidden='true')
+					|  Recepción Muestra
+			li(role='presentation')
+				a(href='/laboratorista/ingreso-resultados')
+					span.glyphicon.glyphicon-list(aria-hidden='true')
+					|  Resultados Muestra
+
+block content 
+	.col-md-9
+
+block list
+	li
+		a(href='/laboratorista/logout')
+			span.glyphicon.glyphicon-off(aria-hidden='true')
+			|  Salir
