@@ -107,20 +107,25 @@ function cargarExamenes(){
     tabla.empty();
 
 	if(opcion =="Sangre"){
-		var $row1= $("<input >");
-		var $row2= $("<input >");
-		var $row3= $("<input >");
-		$row1.attr("type","text");
+		var $row1= $("<option>");
+		var $row2= $("<option>");
+		var $row3= $("<option>");
+		//$row1.attr("type","text");
+		$row1.text("Hemograma");
 		$row1.attr("value","Hemograma");
-		$row1.attr("readonly","readonly");
+		//$row1.attr("readonly","readonly");
 		$row1.attr("name","examen1");
-		$row2.attr("type","text");
+
+		$row2.text("Bioquimica");
+		//$row2.attr("type","text");
 		$row2.attr("value","Bioquimica");
-		$row2.attr("readonly","readonly");
+		//$row2.attr("readonly","readonly");
 		$row2.attr("name","examen2");
-		$row3.attr("type","text");
+
+		$row3.text("Serologia");
+		//$row3.attr("type","text");
 		$row3.attr("value","Serologia");
-		$row3.attr("readonly","readonly");
+		//$row3.attr("readonly","readonly");
 		$row3.attr("name","examen3");
 
 		tabla.append($row1);
@@ -129,19 +134,21 @@ function cargarExamenes(){
 
 	}
 	else if(opcion =="Heces"){
-		var $row1= $("<input >");
-		$row1.attr("type","text");
+		var $row1= $("<option>");
+		$row1.text("Coprocultivo");
+		//$row1.attr("type","text");
 		$row1.attr("value","Coprocultivo");
-		$row1.attr("readonly","readonly");
+		//$row1.attr("readonly","readonly");
 		$row1.attr("name","examen1");
 		tabla.append($row1);
 
 	}
 	else if(opcion=="Orina"){
-		var $row1= $("<input >");
-		$row1.attr("type","text");
+		var $row1= $("<option>");
+		$row1.text("Uroanalisis");
+		//$row1.attr("type","text");
 		$row1.attr("value","Uroanalisis");
-		$row1.attr("readonly","readonly");
+		//$row1.attr("readonly","readonly");
 		$row1.attr("name","examen1");
 		tabla.append($row1);
 	}
