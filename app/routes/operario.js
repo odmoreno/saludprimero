@@ -68,6 +68,7 @@ router.get('/muestras', isLoggedIn,function(req, res, next) {
 });
 
 router.get('/muestras/editar', isLoggedIn, function(req, res, next) {
+    console.log("oli")
     Paciente.find().exec(function(err, paciente){
         res.render('operario/editar_muestra', { title: 'Administrar Pacientes',
             pacientes: paciente});
@@ -167,7 +168,7 @@ router.post('/ingreso-muestras/nuevaMuestra', function (req, res) {
     }
 
 
-    res.redirect('/operario/ingreso-muestras');
+    res.redirect('/operario/muestras');
 
 });
 router.post('/ingreso-muestras/nuevoPaciente',  function (req, res, done) {
@@ -258,7 +259,8 @@ router.get('/ingreso-muestras/centroslist', function(req,res,next){
 
 router.post('/muestras/editar_muestra', function(req, res, next){
     console.log(req.body.codigo);
-    res.render('operario/editar_muestra');
+    res.render('operario/editar_muestra',{title: 'Editar Muestra',
+        pacientes : req.body.codigo})
 });
 
 router.get('/muestras/editar/centroslist', function(req,res,next){
