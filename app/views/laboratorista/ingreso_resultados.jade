@@ -23,7 +23,7 @@ block content
 										td=muestra.codigo
 										td=muestra.fecha
 										td=muestra.tipo
-										td paciente de muestra
+										td #{muestra.paciente.nombres} #{muestra.paciente.apellidos}
 										td
 											if muestra.estado == "Pendiente"
 												button.btnRecibido.btn(type="submit") Recibir

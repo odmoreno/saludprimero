@@ -4,10 +4,15 @@ block content
 	.col-md-9
 		+panel-default("Resultados")
 			.panel-body
-				h3 Muestra #{muestra.codigo}
-				if muestra.tipo == "Heces"
+				h3#codigo #{muestra.codigo}
+				if (muestra.tipo == "Heces" || muestra.tipo == "Orina")
 					.table-responsive
-						table#tblMuestras.table.table-hover
+						label
+							if muestra.tipo == "Heces"
+								| Coprocultivo
+							else
+								| Uroanalisis
+						table#tblExamen.table.table-hover								
 							thead
 								tr
 									th Parametro
@@ -15,10 +20,23 @@ block content
 									th Unidad
 									th Valor de Referencia
 							tbody
-					
+						button#agregar.col-md-3.col-md-offset-4.btn(type='button') Agregar Parametro
+				else 
+					.table-responsive
+						label
+							| Hemograma
+						table#tblExamen.table.table-hover								
+							thead
+								tr
+									th Parametro
+									th Resultado
+									th Unidad
+									th Valor de Referencia
+							tbody
+						button#agregar.col-md-3.col-md-offset-4.btn(type='button') Agregar Parametro
 				a(href='/laboratorista/muestras')#btnVolver.col-md-3.col-md-offset-2.btn(type='button').btn-default
 					| Volver
-				button#btnGuardar.col-md-3.col-md-offset-2.btn(type="submit").btn-primary Guardar
+				button#btnGuardarResult.col-md-3.col-md-offset-2.btn(type="button").btn-primary Guardar
 
 							
 append scripts

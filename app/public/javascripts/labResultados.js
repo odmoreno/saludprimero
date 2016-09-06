@@ -1,5 +1,6 @@
 $(document).ready(function(){
-
+	agregarFila();
+	ingresarResultados();
 });
 
 function cargarTablas(){
@@ -74,93 +75,4 @@ function cargarTablas(){
 			}
 		});
 	});
-}
-
-function ingresarResultados(){
-	$("#btnGuardarResult").on('click', function(){
-		var tipoMuestra = $('#Muestra').text();
-		var codigo = $('#codigoMuestra').text();
-		var datos = [];
-		if(tipoMuestra == 'Orina'){
-			var resultados = [];
-			var nombre = "Uroanálisis";
-			var i =0;
-			$("#tablaOrina tr").each(function(fila){
-				if(i>0){
-					var param = $(this).children(':nth-child(1)').text();
-					var valor = $(this).children('td:nth-child(2)').children("input").val();
-					var unidad = $(this).children(':nth-child(3)').text();
-					var ref = $(this).children(':nth-child(4)').text();
-					resultados[i] = {parametro: param, unidades: unidad, medidas: valor, referencia: ref};
-				}
-				i++;
-			});
-			datos[0] = {nombre: nombre, resultados: resultados};
-		}else if(tipoMuestra == 'Heces'){
-			var resultados = [];
-			var nombre = "Coprocultivo";
-			var i =0;
-			$("#tablaHeces tr").each(function(fila){
-				if(i>0){
-					var param = $(this).children(':nth-child(1)').text();
-					var valor = $(this).children('td:nth-child(2)').children("input").val();
-					var unidad = $(this).children(':nth-child(3)').text();
-					var ref = $(this).children(':nth-child(4)').text();
-					resultados[i] = {parametro: param, unidades: unidad, medidas: valor, referencia: ref};
-				}
-				i++;
-			});
-			datos[0] = {nombre: nombre, resultados: resultados};
-		}else{
-			var resultados1 = [];
-			var nombre1 = "Hemograma";
-			var i =0;
-			$("#tablaSangre1 tr").each(function(fila){
-				if(i>0){
-					var param = $(this).children(':nth-child(1)').text();
-					var valor = $(this).children('td:nth-child(2)').children("input").val();
-					var unidad = $(this).children(':nth-child(3)').text();
-					var ref = $(this).children(':nth-child(4)').text();
-					resultados1[i] = {parametro: param, unidades: unidad, medidas: valor, referencia: ref};
-				}
-				i++;
-			});
-			datos[0] = {nombre: nombre1, resultados: resultados1};
-			var resultados2 = [];
-			var nombre2 = "Bioquímica";
-			var i =0;
-			$("#tablaSangre2 tr").each(function(fila){
-				if(i>0){
-					var param = $(this).children(':nth-child(1)').text();
-					var valor = $(this).children('td:nth-child(2)').children("input").val();
-					var unidad = $(this).children(':nth-child(3)').text();
-					var ref = $(this).children(':nth-child(4)').text();
-					resultados2[i] = {parametro: param, unidades: unidad, medidas: valor, referencia: ref};
-				}
-				i++;
-			});
-			datos[1] = {nombre: nombre2, resultados: resultados2};
-			var resultados3 = [];
-			var nombre3 = "Bioquímica";
-			var i =0;
-			$("#tablaSangre3 tr").each(function(fila){
-				if(i>0){
-					var param = $(this).children(':nth-child(1)').text();
-					var valor = $(this).children('td:nth-child(2)').children("input").val();
-					var unidad = $(this).children(':nth-child(3)').text();
-					var ref = $(this).children(':nth-child(4)').text();
-					resultados3[i] = {parametro: param, unidades: unidad, medidas: valor, referencia: ref};
-				}
-				i++;
-			});
-			datos[2] = {nombre: nombre3, resultados: resultados3};
-		}
-		var json = JSON.stringify(datos);
-		console.log(json);
-		$.ajax({
-			type: 'POST',
-			url: '/laboratorista/muestras/examenes',
-			data: 'examenes='+ json + '&codigo=' + codigo
-		});window.location.replace("/laboratorista/muestras");
-	});
-}
+}*/
