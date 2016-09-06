@@ -98,12 +98,12 @@ router.post('/ingreso-muestras/nuevaMuestra', function (req, res) {
     console.log(fecha);
     var cedula = req.body.cedula;
     console.log(cedula);
-    var examen1 = req.body.examen1;
-    var examen2 = req.body.examen2;
-    var examen3 = req.body.examen3;
-    console.log(examen1 + ":examen1");
-    console.log(examen2 + ":examen2");
-    console.log(examen3 + ":examen3");
+    var examen1 = req.body.examen.selected;
+    ////var examen2 = req.body.examen2;
+    //var examen3 = req.body.examen3;
+    //console.log(examen1 + ":examen1");
+    //console.log(examen2 + ":examen2");
+    //console.log(examen3 + ":examen3");
 
     if(muestra === "Sangre"){
         Paciente.findOne({cedula: cedula})
@@ -116,12 +116,6 @@ router.post('/ingreso-muestras/nuevaMuestra', function (req, res) {
                     estado : "Pendiente",
                     examenes:[{
                         nombre: examen1,
-                        resultados: []
-                    }, {
-                        nombre: examen2,
-                        resultados: []
-                    }, {
-                        nombre: examen3,
                         resultados: []
                     }]
                 });
