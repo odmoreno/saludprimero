@@ -3,16 +3,46 @@ $(document).ready(function(){
 	ingresarResultados();
 });
 
-function cargarTablas(){
-	var codigo;
-	var tipoMuestra;
-	$(".btnIngresar").each(function(){
-		$(this).on('click', function(){
-			$("#resultados").empty();
-			codigo = $(this).closest("tr").children(':nth-child(1)').text();
-			$('#codigoMuestra').text(codigo);
-			tipoMuestra = $(this).closest("tr").children(':nth-child(3)').text();
-			$('#Muestra').text(tipoMuestra);
+function agregarFila(){
+	$("#agregar").on('click', function(){
+		$('#tblExamen tbody').append($('<tr>').append($('<td>').append($('<input>'))).append($('<td>').append($('<input>'))).append($('<td>').append($('<input>'))).append($('<td>').append($('<input>'))));
+	});
+}
+
+function ingresarResultados(){
+	$("#btnGuardarResult").on('click', function(){
+		var codigo = $('#codigo').text();
+		var datos = [];
+		var i = 0;
+		$("#tblExamen").each( function(){
+			var resultados = [];
+			var nombre = $('label').text();
+			var j =0;
+			$(this).children('tbody').children('tr').each(function(){
+				var param = $(this).children(':nth-child(1)').children("input").val();
+				if(param != ''){
+					var valor = $(this).children('td:nth-child(2)').children("input").val();
+					var unidad = $(this).children(':nth-child(3)').children("input").val();
+					var ref = $(this).children(':nth-child(4)').children("input").val();
+					resultados[j] = {parametro: param, unidades: unidad, medidas: valor, referencia: ref};
+				}
+				j++;
+			});
+			datos[i] = {nombre: nombre, resultados: resultados};
+			i++;
+		});
+		var json = JSON.stringify(datos);
+		$.ajax({
+			type: 'POST',
+			url: '/laboratorista/muestras/resultados/nuevo',
+			data: 'examenes='+ json + '&codigo=' + codigo
+		});
+		window.location.replace("/laboratorista/muestras/");
+	});
+}
+		
+
+/*function cargarTablas(){
 			if(tipoMuestra == 'Orina'){
 				$("#resultados").append($('<label>').text('Uroanálisis'));
 				var tabla = $('<table>').addClass("table").attr('id', 'tablaOrina');
