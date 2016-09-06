@@ -96,7 +96,7 @@ function editarMuestra(){
 				url: '/operario/muestras/editar_muestra',
 				data: 'codigo='+ codigo
 			});
-			//window.location.replace("/editar_muestra");
+			//window.location.replace("/operario/muestras/editar");
 		});
 	}
 }

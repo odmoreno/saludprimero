@@ -6,39 +6,40 @@ block content
             .panel-body
                 form(action='/operario/ingreso-muestras/nuevaMuestra', method='post')
                     .form-group.col-md-12.form-inline
-                        label.col-md-2.control-label(for='pacientes') Paciente:
+                        label.col-md-6.control-label(for='pacientes') Paciente:
                         select#pacientes.col-md-4.form-control(name="cedula")
                             if pacientes
                                 each paciente in pacientes
                                     option(value=paciente.cedula)=paciente.cedula
 
                     .form-group.form-inline
-                        .form-group.col-md-6
-                            label.col-md-3.control-label(for='centromed') Centro Médico:
-                            select#centromed.col-md-3.form-control(name="centro")
-                        .form-group.col-md-6
-                            label.col-md-3.control-label(for='muestras') Tipo de Muestra:
-                            select#muestras("onchange"="cargarExamenes()").col-md-3.form-control(name="muestra")
+                        .form-group.col-md-12
+                            label.col-md-6.control-label(for='centromed') Centro Médico:
+                            select#centromed.col-md-4.form-control(name="centro")
+                        .form-group.col-md-12
+                            label.col-md-6.control-label(for='muestras') Tipo de Muestra:
+                            select#muestras("onchange"="cargarExamenes()").col-md-4.form-control(name="muestra")
                                 option(value='Sangre') Sangre
                                 option(value='Heces') Heces
                                 option(value='Orina') Orina
-                        .form-group.col-md-6
-                            label.col-md-3.control-label(for='fechaMuestra') Fecha Toma Muestra:
-                            input#fechaMuestra.col-md-3.form-control(type='date', name='fecha', required='')
+                        .form-group.col-md-12
+                            label.col-md-6.control-label(for='fechaMuestra') Fecha Toma Muestra:
+                            input#fechaMuestra.col-md-4.form-control(type='date', name='fecha', required='')
+
                     .form-group.form-inline.col-md-12
-                        label.col-md-12.control-label Exámenes a realizar:
-                        div#tblExamen
-                    .form-group.form-inline.col-md-12
-                        label.col-md-3.control-label(for='laboratorio') Laboratorio:
-                        select#laboratorio.col-md-3.form-control
+                        label.col-md-6.control-label(for='laboratorio') Laboratorio:
+                        select#laboratorio.col-md-4.form-control
                             option Laboratorio 1
                             option Laboratorio 2
                             option Laboratorio 3
                             option Laboratorio 4
+                    .form-group.form-inline.col-md-12
+                        label.col-md-12.control-label Exámenes a realizar:
+                        div#tblExamen
                     //button#btnVolver.col-md-3.col-md-offset-2.btn(type="button") Volver
-                    a(href='/operario/muestras')#btnVolver.col-md-3.col-md-offset-2.btn(type='button').btn-primary
+                    a(href='/operario/muestras')#btnVolver.col-md-3.col-md-offset-2.btn(type='button').btn-default
                         | Volver
-                    button#btnCodigo.col-md-3.col-md-offset-2.btn(type="submit")
+                    button#btnCodigo.col-md-3.col-md-offset-2.btn(type="submit").btn-primary
                         span.glyphicon.glyphicon-barcode(aria-hidden='true')
                             |  Generar Código
 
