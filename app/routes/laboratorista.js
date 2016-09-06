@@ -16,16 +16,16 @@ router.get('/', isLoggedIn, function(req, res, next) {
 
 });
 
-router.get('/recepcion-muestras',isLoggedIn, function(req, res, next) {
-    Muestra.find({estado: "Pendiente"},function(err, list){
-    res.render('laboratorista/recepcion_muestra', { 
-      title: 'Recepcion de Muestras', 
+router.get('/muestras', isLoggedIn, function(req, res, next) {
+  Muestra.find({$or: [{estado: "Pendiente"},{estado: "En Espera"}]},function(err, list){
+    res.render('laboratorista/ingreso_resultados', { 
+      title: 'Administrar Muestras', 
       muestras: list
     });
   }); 
 });
 
-router.post('/recepcion-muestras/notificar',isLoggedIn, function(req, res, next) {
+router.post('/muestras/notificar',isLoggedIn, function(req, res, next) {
    //Hay que cambiar el estado de la muestra que tenga ese codigo por "Cancelada"
    console.log("notificando "+req.body.codigo);
    Muestra.findOne({codigo:req.body.codigo}).exec(function (err,muestra){
@@ -36,9 +36,9 @@ router.post('/recepcion-muestras/notificar',isLoggedIn, function(req, res, next)
    //res.redirect('/laboratorista/recepcion-muestras');
 });
 
-router.post('/recepcion-muestras/recibir',isLoggedIn, function(req, res, next) {
+router.post('/muestras/recibir',isLoggedIn, function(req, res, next) {
    //Hay que cambiar el estado de la muestra que tenga ese codigo por "Cancelada"
-   console.log("recibido "+req.body.codigos);
+   console.log("recibido "+req.body.codigo);
    Muestra.findOne({codigo:req.body.codigo}).exec(function (err,muestra){
       if (err) return handleError(err);
       muestra.estado = 'En Espera';
@@ -46,17 +46,17 @@ router.post('/recepcion-muestras/recibir',isLoggedIn, function(req, res, next) {
    });
 });
 
-
-router.get('/ingreso-resultados', isLoggedIn, function(req, res, next) {
-    Muestra.find({estado: "En Espera"},function(err, list){
-    res.render('laboratorista/ingreso_resultados', { 
-      title: 'Ingreso de Resultados de Muestras', 
-      muestras: list
+router.get('/muestras/resultados/:codigo', isLoggedIn, function(req, res, next) {
+  Muestra.findOne({codigo: req.params['codigo']}, function(err, muestra){
+    res.render('laboratorista/recepcion_muestra', { 
+      title: 'Resultados Muestra', 
+      muestra: muestra
     });
+    console.log(muestra);
   }); 
 });
 
-router.post('/ingreso-resultados/examenes', isLoggedIn, function(req, res, next) {
+router.post('/muestras/resultados/nuevo', isLoggedIn, function(req, res, next) {
     var examenes = req.body.examenes;
     console.log("codigo: " + req.body.codigo);
     Muestra.find({codigo:req.body.codigo}).exec(function (err,muestra){

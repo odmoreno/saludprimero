@@ -1,7 +1,5 @@
 $(document).ready(function(){
-	$('#tblMuestras').DataTable();
-	cargarTablas();
-	ingresarResultados();
+
 });
 
 function cargarTablas(){
@@ -161,8 +159,8 @@ function ingresarResultados(){
 		console.log(json);
 		$.ajax({
 			type: 'POST',
-			url: '/laboratorista/ingreso-resultados/examenes',
+			url: '/laboratorista/muestras/examenes',
 			data: 'examenes='+ json + '&codigo=' + codigo
-		});window.location.replace("/laboratorista/ingreso-resultados");
+		});window.location.replace("/laboratorista/muestras");
 	});
 }

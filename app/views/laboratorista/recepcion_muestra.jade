@@ -2,29 +2,25 @@ extends dash_lab
 
 block content
 	.col-md-9
-		+panel-default("Muestras")
+		+panel-default("Resultados")
 			.panel-body
-				.table-responsive
-					table#tblMuestras.table.table-hover
-						thead
-							tr
-								th Codigo
-								th Fecha Toma Muestra
-								th Tipo de Muestra
-								th Paciente
-								th Recibir
-								th Notificar
-						tbody
-							each muestra in muestras
+				h3 Muestra #{muestra.codigo}
+				if muestra.tipo == "Heces"
+					.table-responsive
+						table#tblMuestras.table.table-hover
+							thead
 								tr
-									td=muestra.codigo
-									td=muestra.fecha
-									td=muestra.tipo
-									td paciente de muestra
-									td
-										button.btnRecibido.btn(type="submit") Recibir
-									td 
-										button.btnNotificar.btn(type="submit") Notificar
+									th Parametro
+									th Resultado
+									th Unidad
+									th Valor de Referencia
+							tbody
+					
+				a(href='/laboratorista/muestras')#btnVolver.col-md-3.col-md-offset-2.btn(type='button').btn-default
+					| Volver
+				button#btnGuardar.col-md-3.col-md-offset-2.btn(type="submit").btn-primary Guardar
+
+							
 append scripts
 	script
-		include ../../public/javascripts/laboratorista.js
+		include ../../public/javascripts/labResultados.js

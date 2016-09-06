@@ -12,6 +12,8 @@ block content
 								th Fecha Toma Muestra
 								th Tipo de Muestra
 								th Paciente
+								th Recibir
+								th Notificar
 								th Resultados
 						tbody
 
@@ -22,23 +24,15 @@ block content
 										td=muestra.fecha
 										td=muestra.tipo
 										td paciente de muestra
+										td
+											if muestra.estado == "Pendiente"
+												button.btnRecibido.btn(type="submit") Recibir
 										td 
-											button.btnIngresar.btn(type="button",data-toggle="modal",data-target="#resultado") Ingresar Resultado
-		#resultado.modal.fade(tabindex="-1",role="dialog")
-			.modal-dialog
-				.modal-content
-					.modal-header
-						button.close(type="button",data-dismiss="modal")
-							span(aria-hidden="true") &times;
-							span.sr-only Close
-						h4.modal-title Ingreso de Resultados de Examen
-					.modal-body
-						p#codigoMuestra.hide
-						p#Muestra.hide
-						#resultados
-					.modal-footer
-						button.btn.btn-default(type='button', data-dismiss='modal') Descartar
-						button#btnGuardarResult.btn.btn-default(type='submit') Guardar
+											if muestra.estado == "Pendiente"
+												button.btnNotificar.btn(type="submit") Notificar
+										td 
+											if muestra.estado == "En Espera"
+												button.btnIngresar.btn(type="submit") Ingresar Resultado
 append scripts
 	script
-		include ../../public/javascripts/labResultados.js
+		include ../../public/javascripts/laboratorista.js

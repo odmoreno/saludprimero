@@ -27,6 +27,7 @@ $(document).ready(function(){
 	});
 	notificar();
 	recibir();
+	resultados();
 });
 
 function notificar(){
@@ -37,10 +38,10 @@ function notificar(){
 			var codigo = $(this).closest("tr").children(':nth-child(1)').text();
 			$.ajax({
 				type: 'POST',
-				url: '/laboratorista/recepcion-muestras/notificar',
+				url: '/laboratorista/muestras/notificar',
 				data: 'codigo='+ codigo
 			});
-			window.location.replace("/laboratorista/recepcion-muestras/");
+			window.location.replace("/laboratorista/muestras/");
 		});
 	}
 }
@@ -53,10 +54,22 @@ function recibir(){
 			var codigo = $(this).closest("tr").children(':nth-child(1)').text();
 			$.ajax({
 				type: 'POST',
-				url: '/laboratorista/recepcion-muestras/recibir',
+				url: '/laboratorista/muestras/recibir',
 				data: 'codigo='+ codigo
 			});
-			window.location.replace("/laboratorista/recepcion-muestras/");
+			window.location.replace("/laboratorista/muestras/");
+		});
+	}
+}
+
+function resultados(){
+	var ingreso = $(".btnIngresar");
+
+	for(var i = 0; i<ingreso.length;i++){
+		$(".btnIngresar").get(i).addEventListener('click', function(){
+			var codigo = $(this).closest("tr").children(':nth-child(1)').text();
+			var tipoMuestra = $(this).closest("tr").children(':nth-child(3)').text();
+			window.location.replace('/laboratorista/muestras/resultados/' + codigo);
 		});
 	}
 }
