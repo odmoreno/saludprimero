@@ -22,7 +22,8 @@ $(document).ready(function(){
 				sortDescending: ": Activar para ordenar de manera descendente"
 			}
 		},
-		"order": [[ 0, "desc" ]]
+		"order": [[ 0, "desc" ]],
+		"bSort": false
 
 	} );
 	init();
