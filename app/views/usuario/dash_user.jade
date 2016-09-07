@@ -16,14 +16,19 @@ block content
 	.col-md-9
 
 block list
-	li
-		a(href='/usuario/perfil')
-			span.glyphicon.glyphicon-user(aria-hidden='true')
-			|  Perfil
-	li
-		a(href='/usuario/password')
+	li.dropdown
+		a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
 			span.glyphicon.glyphicon-cog(aria-hidden='true')
-			|  Contraseña
+			span.caret
+		ul.dropdown-menu
+			li
+				a(href='/usuario/perfil')
+					span.glyphicon.glyphicon-user(aria-hidden='true')
+					|  Perfil
+			li
+				a(href='/usuario/password')
+					span.glyphicon.glyphicon-pencil(aria-hidden='true')
+					|  Contraseña
 	li
 		a(href='/usuario/logout')
 			span.glyphicon.glyphicon-off(aria-hidden='true')

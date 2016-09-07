@@ -17,10 +17,16 @@ router.get('/logout', isLoggedIn, function (req, res, next) {
 
 //vistas usuario
 router.get('/', isLoggedIn, function(req, res, next) {
-    console.log(req.isAuthenticated() +  ' :valor');
-    res.render('usuario/home', { title: 'Bienvenido' });
-
-
+    usuarioLog.findOne({ email : req.session['email']})
+        .populate('paciente')
+        .exec(function (err, user) {
+            if (err) return handleError(err);
+            res.render('usuario/home',{
+                title: 'Bienvenido',
+                paciente : user.paciente,
+                usuario : user
+            });
+        });
 });
 
 router.get('/perfil', isLoggedIn, function(req, res, next) {

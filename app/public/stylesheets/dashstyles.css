@@ -127,3 +127,13 @@ li:hover{
     color: black;
     font-family: Arial, Helvetica, sans-serif;
  }
+
+ .header{
+  color: #007299;
+  text-align: center;
+}
+
+ .subheader{
+  color: #007299;
+  text-align: center;
+}
