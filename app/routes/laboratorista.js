@@ -33,7 +33,6 @@ router.post('/muestras/notificar',isLoggedIn, function(req, res, next) {
       muestra.estado = 'Cancelado';
       muestra.save();
    });
-   //res.redirect('/laboratorista/recepcion-muestras');
 });
 
 router.post('/muestras/recibir',isLoggedIn, function(req, res, next) {
@@ -66,6 +65,7 @@ router.post('/muestras/resultados/nuevo', isLoggedIn, function(req, res, next) {
           mus.estado = 'Listo';
           mus.save();
     });
+    res.redirect('/laboratorista/muestras');
 });
 
 router.use('/', notLoggedIn, function (req, res, next) {

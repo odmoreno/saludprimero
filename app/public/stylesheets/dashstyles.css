@@ -110,3 +110,8 @@ li:hover{
     background: #007299;
     box-shadow: none;
 }
+
+.form-horizontal .control-label{
+/* text-align:right; */
+  text-align:left;
+}

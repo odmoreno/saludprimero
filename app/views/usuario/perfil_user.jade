@@ -34,17 +34,4 @@ block content
 								label.control-label.col-md-2(for='telUsuario') Teléfonos:
 								input#telUsuario.form-control.col-md-6(type='text', maxlength='15',pattern="[0-9]+", title="-Solo números", value="#{paciente.telefonos[0]}", name='telefono')
 								//input#telUsuario.form-control.col-md-6(type='text', maxlength='15',pattern="[0-9]+", title="-Solo números", value="#{usuarioInfoList[0].telf}", name='telefono')
-					button#btnGuardar.col-md-2.col.btn(type="submit") Guardar Cambios
-				form.form-horizontal(action='/usuario/perfil/newPass', method='post')
-					.row
-						.pull-right.col-md-4
-						.col-md-10
-							h3 Cambiar Contraseña
-							.form-group.form-inline
-								label.control-label.col-md-2(for='passNueva1') Nueva Contraseña:
-								input#passNueva1.form-control.col-md-6(type='password', name='newpassword1')
-							.form-group.form-inline
-								label.control-label.col-md-2(for='passNueva2') Confirme Contraseña:
-								input#passNueva2.form-control.col-md-6(type='password', name='newpassword2')
-
-					button#btnGuardarpass.col-md-2.col.btn(type="submit") Guardar Cambios
+					button#btnGuardar.btn-primary.col-md-2.col.btn(type="submit") Guardar Cambios

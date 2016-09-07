@@ -23,13 +23,13 @@ block content
 										td=paciente.email
 										td 
 											button.btnEliminar.btn(type="submit") Eliminar
-			button#btnNuevo.col-md-4.btn(type="button",data-toggle="modal",data-target="#nuevoPaciente") Agregar Paciente
+			button#btnNuevo.col-md-4.col-md-offset-4.btn-primary.btn(data-toggle="modal", data-target="#nuevoPaciente") Agregar Paciente
 
 		#nuevoPaciente.modal.fade(tabindex="-1",role="dialog")
 			.modal-dialog
 				.modal-content
 					.modal-header
-						button.close(type="button",data-dismiss="modal")
+						button.close(type="button", data-dismiss="modal")
 							span(aria-hidden="true") &times;
 							span.sr-only Close
 						h4.modal-title Registrar Paciente

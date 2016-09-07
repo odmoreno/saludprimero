@@ -77,7 +77,19 @@ router.post('/perfil/editUser', function(req, res, next) {
     });*/
 );
 
-router.post('/perfil/newPass', function(req, res, next){
+router.get('/password', isLoggedIn, function(req, res, next) {
+
+    usuarioLog.findOne({ email : req.session['email']})
+        .populate('paciente')
+        .exec(function (err, user) {
+            if (err) return handleError(err);
+            res.render('usuario/password',{
+                title: 'Cambiar Contraseña'
+            });
+        });
+});
+
+router.post('/password/newPass', function(req, res, next){
     //res.send(req.body.newpassword1);
     if (req.body.newpassword1 === req.body.newpassword2){//chequeo que la nueva contrasena y su validacion sean iguales
       usuarioPrueba = new usuarioLog({password:req.body.newpassword1});
@@ -90,7 +102,7 @@ router.post('/perfil/newPass', function(req, res, next){
         console.log(usuarioPrueba.password);
       });
      
-    res.redirect('/usuario/perfil');
+    res.redirect('/usuario/password');
     return;
     }res.send('Las contrasenas ingresadas no son iguales');
     
