@@ -35,20 +35,20 @@ block content
 						h4.modal-title Registrar Paciente
 					.modal-body
 						form#form-agregar(action='/operario/ingreso-muestras/nuevoPaciente', method='post')
-							.form-group.form-inline
+							.form-group.form-inline.required
 								label.col-md-3.control-label(for='inputNombre') Nombres:
 								input#inputNombre.form-control.required(type='text', required='', maxlength='30',pattern="[a-zA-Z ]+" ,name='nombre')
-							.form-group.form-inline
+							.form-group.form-inline.required
 								label.col-md-3.control-label(for='inputApellidos') Apellidos:
 								input#inputApellidos.form-control.required(type='text', required='', maxlength='30',pattern="[a-zA-Z ]+",name='apellido')
-							.form-group.form-inline
+							.form-group.form-inline.required
 								label.col-md-3.control-label(for='inputCedula') Cédula:
 								input#inputCedula.form-control.required(type='text', required='', pattern="[0-9]{10}", title="Requiere 10caracteres\n-Solo-números", maxlength='10', name='cedula')
-							.form-group.form-inline
+							.form-group.form-inline.required
 								label.col-md-3.control-label(for='inputEmail') Correo Electrónico:
 								input#inputEmail.form-control.required(type='email', required='', maxlength='30', name='email')
-							button.btn.btn-default(type='button', data-dismiss='modal') Cancelar
-							button.btn.btn-default(type='submit') Registrar
+							button.btn(type='button', data-dismiss='modal') Cancelar
+							button.col-md-offset-2.btn.btn-primary(type='submit') Registrar
 append scripts
 	script
 		include ../../public/javascripts/operario.js
