@@ -98,7 +98,7 @@ router.post('/ingreso-muestras/nuevaMuestra', function (req, res) {
     console.log(fecha);
     var cedula = req.body.cedula;
     console.log(cedula);
-    var examen1 = req.body.examen.selected;
+    var examen1 = req.body.examenes;
     ////var examen2 = req.body.examen2;
     //var examen3 = req.body.examen3;
     //console.log(examen1 + ":examen1");
