@@ -7,6 +7,8 @@ var schema = new Schema({
     paciente: {type: Schema.Types.ObjectId, ref: 'pacientesdb' },
     codigo: String,
     estado: String,
+    centro: String,
+    lab: String,
     examenes : [{
         nombre: String,
         resultados: [{

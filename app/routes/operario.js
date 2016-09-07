@@ -90,6 +90,8 @@ router.get('/reportes', isLoggedIn, function(req, res, next) {
 router.post('/ingreso-muestras/nuevaMuestra', function (req, res) {
 
     console.log("POST muestra");
+    var lab = req.body.lab;
+    console.log(lab);
     var centro = req.body.centro;
     console.log(centro);
     var muestra = req.body.muestra;
@@ -116,6 +118,8 @@ router.post('/ingreso-muestras/nuevaMuestra', function (req, res) {
                     fecha : fecha,
                     codigo : cedula + num,
                     estado : "Pendiente",
+                    centro : centro,
+                    lab : lab,
                     examenes:[{
                         nombre: examen1,
                         resultados: []
@@ -143,6 +147,8 @@ router.post('/ingreso-muestras/nuevaMuestra', function (req, res) {
                     fecha : fecha,
                     codigo : cedula + num,
                     estado : "Pendiente",
+                    centro : centro,
+                    lab : lab,
                     examenes:[{
                         nombre: examen1,
                         resultados: []

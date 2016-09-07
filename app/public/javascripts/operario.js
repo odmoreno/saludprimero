@@ -46,7 +46,7 @@ function mostrarCentro(){
 			var json = JSON.parse(xhttp.responseText);
 			var select = $("#centromed");
 			json.forEach(function(centro){
-				select.append($('<option>').text(centro.nombre));
+				select.append($('<option>', { value: centro.nombre, text: centro.nombre}));
 			});
 		}
 	};

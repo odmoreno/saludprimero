@@ -11,9 +11,11 @@ require('../config/passport');
 
 var muestra1 = new Muestra({
     tipo: "Sangre",
-    fecha: Date.now(),
+    fecha: "2016-08-09",
     codigo: "123456",
     estado: "Listo",
+    centro: "SaludPrimero Centro",
+    lab: "Laboratorio 3",
     examenes: [{
         nombre: "Hemograma",
         resultados: [{
@@ -36,9 +38,11 @@ var muestra2 = new Muestra({
     tipo: "Orina",
     fecha: Date.now(),
     codigo: "123457",
-    estado: "Pendiente",
+    estado: "Listo",
+    centro: "SaludPrimero Centro",
+    lab: "Laboratorio 2",
     examenes: [{
-        nombre: "examen de orina",
+        nombre: "Urologia",
         resultados: [{
             parametro: "cosas de orina 1",
             unidades: "mg/dl",
@@ -58,6 +62,8 @@ var muestra3 = new Muestra({
     fecha: Date.now(),
     codigo: "123458",
     estado: "Pendiente",
+    centro: "SaludPrimero Centro",
+    lab: "Laboratorio 2",
     examenes: []
 });
 
@@ -66,6 +72,8 @@ var muestra4 = new Muestra({
     fecha: Date.now(),
     codigo: "123459",
     estado: "Pendiente",
+    centro: "SaludPrimero Centro",
+    lab: "Laboratorio 1",
     examenes: []
 });
 
@@ -74,6 +82,8 @@ var muestra5 = new Muestra({
     fecha: Date.now(),
     codigo: "1234560",
     estado: "Pendiente",
+    centro: "SaludPrimero Centro",
+    lab: "Laboratorio 3",
     examenes: []
 });
 
