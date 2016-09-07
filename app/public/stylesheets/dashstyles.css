@@ -136,4 +136,9 @@ li:hover{
  .subheader{
   color: #007299;
   text-align: center;
+  border-bottom: 2px solid #acdfe8;
+}
+
+.info p{
+  padding-top: 5%;
 }
