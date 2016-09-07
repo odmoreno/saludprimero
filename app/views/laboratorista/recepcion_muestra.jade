@@ -5,40 +5,21 @@ block content
 		+panel-default("Resultados")
 			.panel-body
 				h3#codigo #{muestra.codigo}
-				if (muestra.tipo == "Heces" || muestra.tipo == "Orina")
-					.table-responsive
-						label
-							if muestra.tipo == "Heces"
-								| Coprocultivo
-							else
-								| Uroanalisis
-						table#tblExamen.table.table-hover								
-							thead
-								tr
-									th Parametro
-									th Resultado
-									th Unidad
-									th Valor de Referencia
-							tbody
-						button#agregar.col-md-3.col-md-offset-4.btn(type='button') Agregar Parametro
-				else 
-					.table-responsive
-						label
-							| Hemograma
-						table#tblExamen.table.table-hover								
-							thead
-								tr
-									th Parametro
-									th Resultado
-									th Unidad
-									th Valor de Referencia
-							tbody
-						button#agregar.col-md-3.col-md-offset-4.btn(type='button') Agregar Parametro
+				.table-responsive
+					label #{muestra.examenes[0].nombre}
+					table#tblExamen1.table.table-hover								
+						thead
+							tr
+								th Parametro
+								th Resultado
+								th Unidad
+								th Valor de Referencia
+						tbody
+					button#agregar.col-md-3.col-md-offset-4.btn(type='button') Agregar Parametro
 				a(href='/laboratorista/muestras')#btnVolver.col-md-3.col-md-offset-2.btn(type='button').btn-default
 					| Volver
 				button#btnGuardarResult.col-md-3.col-md-offset-2.btn(type="button").btn-primary Guardar
-
-							
+				
 append scripts
 	script
 		include ../../public/javascripts/labResultados.js

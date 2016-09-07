@@ -5,7 +5,7 @@ $(document).ready(function(){
 
 function agregarFila(){
 	$("#agregar").on('click', function(){
-		$('#tblExamen tbody').append($('<tr>').append($('<td>').append($('<input>'))).append($('<td>').append($('<input>'))).append($('<td>').append($('<input>'))).append($('<td>').append($('<input>'))));
+		$('#tblExamen1 tbody').append($('<tr>').append($('<td>').append($('<input>'))).append($('<td>').append($('<input>'))).append($('<td>').append($('<input>'))).append($('<td>').append($('<input>'))));
 	});
 }
 
@@ -14,7 +14,7 @@ function ingresarResultados(){
 		var codigo = $('#codigo').text();
 		var datos = [];
 		var i = 0;
-		$("#tblExamen").each( function(){
+		$("#tblExamen1").each( function(){
 			var resultados = [];
 			var nombre = $('label').text();
 			var j =0;

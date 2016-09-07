@@ -59,14 +59,12 @@ router.get('/muestras/resultados/:codigo', isLoggedIn, function(req, res, next) 
 router.post('/muestras/resultados/nuevo', isLoggedIn, function(req, res, next) {
     var examenes = req.body.examenes;
     console.log("codigo: " + req.body.codigo);
-    Muestra.find({codigo:req.body.codigo}).exec(function (err,muestra){
+    Muestra.findOne({codigo:req.body.codigo}).exec(function (err,mus){
       if (err) return handleError(err);
-      muestra.forEach(function(mus){
           var json = JSON.parse(examenes);
           mus.examenes = json;
           mus.estado = 'Listo';
           mus.save();
-      });
     });
 });
 
@@ -75,6 +73,7 @@ router.use('/', notLoggedIn, function (req, res, next) {
 });
 
 function isLoggedIn(req, res, next) {
+    return next();
     if (req.isAuthenticated() && req.session.rol === "laboratorista" ){
         return next();
     }

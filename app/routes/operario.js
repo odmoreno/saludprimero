@@ -99,6 +99,7 @@ router.post('/ingreso-muestras/nuevaMuestra', function (req, res) {
     var cedula = req.body.cedula;
     console.log(cedula);
     var examen1 = req.body.examenes;
+    var num = fecha.replace(/-/g, "a");
     ////var examen2 = req.body.examen2;
     //var examen3 = req.body.examen3;
     //console.log(examen1 + ":examen1");
@@ -109,10 +110,11 @@ router.post('/ingreso-muestras/nuevaMuestra', function (req, res) {
         Paciente.findOne({cedula: cedula})
             .populate('muestras')
             .exec(function (err, paciente) {
+                
                 var muestra1 = new Muestra({
                     tipo : muestra,
                     fecha : fecha,
-                    codigo : cedula + fecha,
+                    codigo : cedula + num,
                     estado : "Pendiente",
                     examenes:[{
                         nombre: examen1,
@@ -139,7 +141,7 @@ router.post('/ingreso-muestras/nuevaMuestra', function (req, res) {
                 var muestra1 = new Muestra({
                     tipo : muestra,
                     fecha : fecha,
-                    codigo : cedula + fecha,
+                    codigo : cedula + num,
                     estado : "Pendiente",
                     examenes:[{
                         nombre: examen1,
@@ -156,8 +158,6 @@ router.post('/ingreso-muestras/nuevaMuestra', function (req, res) {
                         console.log("funciona!");
                     });
                 });
-
-
             });
     }
 
