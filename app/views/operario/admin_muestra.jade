@@ -21,7 +21,7 @@ block content
 										td=muestra.codigo
 										td=muestra.fecha
 										td=muestra.tipo
-										td=muestra.paciente
+										td #{muestra.paciente.nombres} #{muestra.paciente.apellidos}
 										td=muestra.estado
 										td
 											button.btnEditar.btn(type="submit") Editar

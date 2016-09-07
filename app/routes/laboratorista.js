@@ -17,7 +17,7 @@ router.get('/', isLoggedIn, function(req, res, next) {
 });
 
 router.get('/muestras', isLoggedIn, function(req, res, next) {
-  Muestra.find({$or: [{estado: "Pendiente"},{estado: "En Espera"}]}).populate('paciente').exec(function(err, list){
+  Muestra.find({$or: [{estado: "Pendiente"},{estado: "En Espera"},{estado: "Listo"}]}).populate('paciente').exec(function(err, list){
     res.render('laboratorista/ingreso_resultados', { 
       title: 'Administrar Muestras', 
       muestras: list
