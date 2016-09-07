@@ -10,7 +10,7 @@ section {
 }
 
 #menu{
-	margin-left: -2%;
+	margin-left: -1%;
 }
 
 #menu ul li a {
@@ -141,4 +141,9 @@ li:hover{
 
 .info p{
   padding-top: 5%;
+}
+
+#agregar{
+  margin-bottom: 2%;
+  margin-top: 2%;
 }
