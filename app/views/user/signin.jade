@@ -1,13 +1,14 @@
-extends ../dash_layout
+extends ../index
 
 block content
-    .container.col-md-4.col-md-offset-4
-        h1 Sign in
+    .container.col-md-4.col-md-offset-4.casilla
+        .header
+            h1 Sign in
         if hasErrors
             .alert.alert-danger
                 each msg in messages
                     p= msg
-        form.form-signin(action='/user/signin', method='post')
+        form.sign.form-signin(action='/user/signin', method='post')
             //.form-group
             .input-group
                 //label(for='email')  E-mail

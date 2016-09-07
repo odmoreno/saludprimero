@@ -2,7 +2,9 @@ extends dash_lab
 
 block content
 	.col-md-9
-		+panel-default("Resultados")
+		.panel.panel-default
+			.panel-heading
+				h3.panel-title Resultados
 			.panel-body
 				h3#codigo #{muestra.codigo}
 				.table-responsive

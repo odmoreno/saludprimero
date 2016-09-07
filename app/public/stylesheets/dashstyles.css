@@ -14,7 +14,7 @@ section {
 }
 
 #menu ul li a {
-  color: #0a161c;
+  color: #277ead;
 }
 
 footer {
@@ -23,8 +23,8 @@ footer {
   height: 100px;
   clear:both;
   padding:2.5% 0;
-  background-color: #0a161c;
-  color: #4d5c63;
+  background-color: #007299;
+  color: #acdfe8;
 }
 
 button#btnCodigo{
@@ -42,9 +42,10 @@ button#btnCodigo{
   margin-bottom: 2%;
 }
 
+
 li.active{
-  background-color: gray;
-  color: white;
+  background-color: #acdfe8;
+  color: #f5f5f5;
 }
 
 .form-group.required label:after {
@@ -59,4 +60,53 @@ li.active{
 .img-responsive{
   float:left;
   margin: 2%;
+}
+
+.navbar-custom {
+    background-color:#1075bc;
+    color:#ffffff;
+    border-radius:0;
+}
+
+.navbar-custom .navbar-nav > li > a {
+    color:#fff;
+}
+.navbar-custom .navbar-nav > .active > a, .navbar-nav > .active > a:hover, .navbar-nav > .active > a:focus {
+    color: #ffffff;
+    background-color:#1075bc;
+}
+.navbar-custom .navbar-brand {
+    color:#eeeeee;
+}
+
+.panel-default > .panel-heading {
+  background-color: #acdfe8;
+}
+
+li:hover{
+  background-color:#1075bc;
+  color:#ffffff;
+}
+
+.btn {
+    background-color: #acdfe8;
+    border: 0 none;
+}
+ 
+.btn:focus, .btn:active:focus, .btn.active:focus {
+    outline: 0 none;
+}
+ 
+.btn-primary {
+    background: #1075bc;
+    color: #ffffff;
+}
+ 
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
+    background: #33a6cc;
+}
+ 
+.btn-primary:active, .btn-primary.active {
+    background: #007299;
+    box-shadow: none;
 }

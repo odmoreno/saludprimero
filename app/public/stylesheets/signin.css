@@ -2,30 +2,98 @@ html, body {
   height: 100%;
 }
 
-header{
-	background-color: #0a161c;
-	color: #4d5c63;
+section {
+  overflow:auto;
+  min-height: 90%;
+  padding: 60px 0 0 0; 
+  margin-bottom: 100px;
 }
 
-.input-group, select{
-	margin-bottom: 1%;
+#menu{
+  margin-left: -2%;
 }
 
-.container{
- 	min-height: 90%;
-}
-.center {
-     float: none;
-     margin-left: auto;
-     margin-right: auto;
+#menu ul li a {
+  color: #277ead;
 }
 
 footer {
   position: relative;
-  margin-top: -70px; /* negative value of footer height */
-  height: 70px;
+  margin-top: -100px; /* negative value of footer height */
+  height: 100px;
   clear:both;
   padding:2.5% 0;
-  background-color: #0a161c;
-  color: #4d5c63;
+  background-color: #007299;
+  color: #acdfe8;
+}
+
+.btn {
+    background-color: #acdfe8;
+    border: 0 none;
+}
+ 
+.btn:focus, .btn:active:focus, .btn.active:focus {
+    outline: 0 none;
+}
+ 
+.btn-primary {
+    background: #1075bc;
+    color: #ffffff;
+}
+ 
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
+    background: #33a6cc;
+}
+ 
+.btn-primary:active, .btn-primary.active {
+    background: #007299;
+    box-shadow: none;
+}
+
+.sign{
+  background: white;
+  padding: 2%;
+}
+
+.header{
+  color: white;
+  background: #1075bc;
+  padding: 0.2%;
+  text-align: center;
+}
+
+.casilla{
+  margin-top: 5%;
+  border-radius: 25px;
+}
+
+body{
+  background-image: url("https://image.freepik.com/vector-gratis/patron-con-circulos-y-cruces_1060-45.jpg");
+  background-color: #cccccc;
+}
+
+.navbar-custom {
+    background-color:#1075bc;
+    color:#ffffff;
+    border-radius:0;
+}
+
+.navbar-custom .navbar-nav > li > a {
+    color:#fff;
+}
+.navbar-custom .navbar-nav > .active > a, .navbar-nav > .active > a:hover, .navbar-nav > .active > a:focus {
+    color: #ffffff;
+    background-color:#1075bc;
+}
+.navbar-custom .navbar-brand {
+    color:#eeeeee;
+}
+
+.panel-default > .panel-heading {
+  background-color: #acdfe8;
+}
+
+li:hover{
+  background-color:#1075bc;
+  color:#ffffff;
 }
