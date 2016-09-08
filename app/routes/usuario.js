@@ -5,7 +5,9 @@ var Centro = require('../models/modCentro');
 var Examen = require('../models/modExamen.js');
 var UserInfo = require('../models/modUsuario.js');
 var usuarioLog = require('../models/user_login');
-
+var Muestra=require('../models/muestra');
+var PdfPrinter = require('pdfmake/src/printer');
+var fs = require('fs');
 var paciente = require('../models/paciente');
 
 router.get('/logout', isLoggedIn, function (req, res, next) {
@@ -132,6 +134,98 @@ router.get('/examenes', isLoggedIn, function(req, res, next) {
         });
 
 });
+
+router.post('/examenes/pdf', isLoggedIn, function(req, res, next) {
+    console.log("POST PDF");
+    var codigo = req.body.codigo;
+    console.log(codigo);
+    Muestra.findOne({codigo: codigo}).populate('paciente').exec(function(err, muestra){
+        var nombre = muestra.paciente.nombres;
+        console.log(nombre);
+        var apellidos = muestra.paciente.apellidos;
+        console.log(apellidos);
+        var cedula = muestra.paciente.cedula;
+        console.log(cedula);
+        var email = muestra.paciente.email;
+        console.log(email);
+        var nombreExamen = muestra.examenes[0].nombre;
+        console.log(nombreExamen);
+
+        var fonts = {
+            Roboto: {
+                normal: 'public/fonts/Roboto-Regular.ttf',
+                bold: 'public/fonts/Roboto-Medium.ttf',
+                italics: 'public/fonts/Roboto-Italic.ttf',
+                bolditalics: 'public/fonts/Roboto-Italic.ttf'
+            }
+        };
+        var printer = new PdfPrinter(fonts);
+        
+
+
+        var dd = {
+            content: [
+                { text: 'SaludPrimero S.A. - Mis Exámenes', style: 'header' },
+                { text: 'Información General', style: 'subheader' },
+                {
+                    style: 'tableExample',
+                    table: {
+                        widths: [100, '*', 100, '*'],
+                        body: [
+                            [ { text: 'Nombre: ', bold: true }, nombre, { text: 'Apellidos: ', bold: true }, apellidos],
+                            [ { text: 'Cédula: ', bold: true }, cedula, { text: 'Email: ', bold: true }, email]
+                        ]
+                    },
+                    layout: 'noBorders'
+                },
+                { text: 'Resultados de los Exámenes', style: 'header' },
+                { text: nombreExamen, style: 'subheader' },
+                {
+                    style: 'tableExample',
+                    table: {
+                        widths: [100, '*', 100, '*'],
+                        body: [
+                            [{ text: 'Parámetro', style: 'tableHeader', alignment: 'center' },{ text: 'Resultado', style: 'tableHeader', alignment: 'center' }, { text: 'Unidad', style: 'tableHeader', alignment: 'center' }, { text: 'Valor de Referencia', style: 'tableHeader', alignment: 'center' }],
+                        ]
+                    },
+                    layout: 'lightHorizontalLines'
+                }
+            ],
+            styles: {
+                header: {
+                fontSize: 18,
+                bold: true,
+                margin: [0, 0, 0, 10]
+                },
+                subheader: {
+                fontSize: 16,
+                bold: true,
+                margin: [0, 10, 0, 5]
+                },
+                tableExample: {
+                margin: [0, 5, 0, 15]
+                },
+                tableHeader: {
+                bold: true,
+                fontSize: 13,
+                color: 'black'
+                }
+            },
+            defaultStyle: {
+            // alignment: 'justify'
+            }
+        }
+        muestra.examenes[0].resultados.forEach(function(resultado){
+            dd.content[5].table.body.push([resultado.parametro, resultado.medidas, resultado.unidades, resultado.referencia]);
+        });
+
+        var pdfDoc = printer.createPdfKitDocument(dd);
+        pdfDoc.pipe(fs.createWriteStream('pdfs/'+codigo+".pdf"));
+        pdfDoc.end();
+        res.redirect('/usuario/examenes');
+    }); 
+});
+
 
 router.get('/centros-medicos', isLoggedIn, function(req, res) {
   //res.render('usuario/centros_medicos', { title: 'Centros Medicos' });

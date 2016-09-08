@@ -25,4 +25,23 @@ $(document).ready(function(){
 		"order": [[ 0, "desc" ]]
 
 	});
+	crearPDF();
 });
+
+function crearPDF(){
+	var adjuntos = $(".btnPDF");
+
+	for(var i = 0; i<adjuntos.length;i++){
+		console.log("entra");
+		$(".btnPDF").get(i).addEventListener('click', function(){
+			var codigo = $(this).closest("tr").children(':nth-child(1)').text();
+			console.log(codigo);
+			$.ajax({
+				type: 'POST',
+				url: '/usuario/examenes/pdf' ,
+				data: 'codigo='+ codigo
+			});
+			window.location.replace("/usuario/examenes");
+		});
+	}
+}
