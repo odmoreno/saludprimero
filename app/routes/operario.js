@@ -85,14 +85,92 @@ router.get('/muestras', isLoggedIn,function(req, res, next) {
 
 });
 
+router.get('/ingreso-muestras/centroslist', function(req,res,next){
+    Centro.find(function(err, centros){
+        res.send(centros);
+    });
+});
+
 router.get('/muestras/editar', isLoggedIn, function(req, res, next) {
-    console.log("oli")
-    Paciente.find().exec(function(err, paciente){
-        res.render('operario/editar_muestra', { title: 'Administrar Pacientes',
-            pacientes: paciente});
-    })
+    console.log("Editar Muestra");
+    console.log( "query:" + req.query.codigo);
+    Muestra.findOne({codigo: req.query.codigo})
+        .populate({path: 'paciente'})
+        .exec(function(err, muestra){
+            if (err) return handleError(err);
+            res.render('operario/editar_muestra', {
+                title: 'Administrar Pacientes',
+                muestra: muestra
+            });
+    });
 
 });
+
+router.post('/muestras/editar_muestra', function(req, res, next){
+    console.log("post editar muestra");
+    var paciente = req.body.cedula;
+    console.log(paciente);
+    var fecha = req.body.fecha;
+    console.log(fecha);
+    var centro = req.body.centro;
+    console.log(centro);
+    var muestra1 = req.body.muestra;
+    console.log(muestra1);
+    var lab = req.body.lab;
+    console.log(lab);
+    var examen = req.body.examen;
+    console.log(examen);
+    var num = fecha.replace(/-/g, "a");
+    var codigo = req.body.codigo;
+    console.log(codigo);
+    var muestraAnt = req.body.tipoAnt;
+    console.log(muestraAnt);
+    Muestra.findOne({codigo: codigo})
+        .populate({path: 'paciente'})
+        .exec(function(err, muestra){
+            if (err) return handleError(err);
+            console.log(muestra);
+            if (muestra1 == muestraAnt){
+                console.log("-----------muestras coincidentes------------");
+                muestra.fecha = fecha;
+                muestra.centro = centro;
+                muestra.lab = lab;
+                muestra.examenes.push({
+                    nombre: examen,
+                    resultados: []
+                });
+                muestra.save(function (err) {
+                    if (err) return handleError(err);
+                    console.log("Muestra EDITADA");
+                })
+            }
+            else {
+                muestra.fecha = fecha;
+                muestra.centro = centro;
+                muestra.lab = lab;
+                muestra.tipo = muestra1;
+                muestra.examenes = [];
+                exa = {
+                    nombre: examen,
+                    resultados: []
+                };
+                muestra.examenes.push(exa);
+                muestra.save(function (err) {
+                    if (err) return handleError(err);
+                    console.log("Muestra EDITADA");
+                })
+            }
+
+        });
+    res.redirect('/operario/muestras');
+});
+
+router.get('/muestras/editar/centroslist', function(req,res,next){
+    Centro.find(function(err, centros){
+        res.send(centros);
+    });
+});
+
 
 router.post('/muestras/eliminar', function(req, res, next){
     console.log(req.body.codigo);
@@ -107,7 +185,7 @@ router.get('/reportes', isLoggedIn, function(req, res, next) {
 
 router.post('/ingreso-muestras/nuevaMuestra', function (req, res) {
 
-    console.log("POST muestra");
+    console.log("POST Ingreso muestra");
     var lab = req.body.lab;
     console.log(lab);
     var centro = req.body.centro;
@@ -269,23 +347,7 @@ router.post('/ingreso-muestras/nuevoPaciente',  function (req, res, done) {
 );
 
 
-router.get('/ingreso-muestras/centroslist', function(req,res,next){
-    Centro.find(function(err, centros){
-        res.send(centros);
-    });  
-});
 
-router.post('/muestras/editar_muestra', function(req, res, next){
-    console.log(req.body.codigo);
-    res.render('operario/editar_muestra',{title: 'Editar Muestra',
-        pacientes : req.body.codigo})
-});
-
-router.get('/muestras/editar/centroslist', function(req,res,next){
-    Centro.find(function(err, centros){
-        res.send(centros);
-    });  
-});
 /*
 router.use('/', notLoggedIn, function (req, res, next) {
     next();

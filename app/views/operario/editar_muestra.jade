@@ -4,10 +4,11 @@ block content
 	.col-md-9
 		+panel-default("Informacion de Muestra")
 			.panel-body
-				form(action='/operario/editar_muestra', method='put')
+				form(action='/operario/muestras/editar_muestra', method='post')
 					.form-group.col-md-12.form-inline
 						label.col-md-6.control-label(for='pacientes') Paciente:
 						select#pacientes.col-md-4.form-control(name="cedula")
+									option(value=muestra.paciente.cedula)=muestra.paciente.cedula
 						.form-group.form-inline
 							.form-group.col-md-12
 								label.col-md-6.control-label(for='centromed') Centro Médico:
@@ -15,25 +16,36 @@ block content
 							.form-group.col-md-12
 								label.col-md-6.control-label(for='muestras') Tipo de Muestra:
 								select#muestras("onchange"="cargarExamenes()").col-md-4.form-control(name="muestra")
-									option(value='Sangre') Sangre
-									option(value='Heces') Heces
-									option(value='Orina') Orina
+									if muestra.tipo === "Sangre"
+										option(value=muestra.tipo)=muestra.tipo
+										option(value='Heces') Heces
+										option(value='Orina') Orina
+									else if muestra.tipo === "Heces"
+										option(value=muestra.tipo)=muestra.tipo
+										option(value='Sangre') Sangre
+										option(value='Orina') Orina
+									else
+										option(value=muestra.tipo)= muestra.tipo
+										option(value='Heces') Heces
+										option(value='Sangre') Sangre
 							.form-group.col-md-12
 								label.col-md-6.control-label(for='fechaMuestra') Fecha Toma Muestra:
-								input#fechaMuestra.col-md-4.form-control(type='date', name='fecha', required='')
+								input#fechaMuestra.col-md-4.form-control(type='date', name='fecha', required='', value="#{muestra.fecha}")
 
 						.form-group.form-inline.col-md-12
 							label.col-md-6.control-label(for='laboratorio') Laboratorio:
-							select#laboratorio.col-md-4.form-control
-								option Laboratorio 1
-								option Laboratorio 2
-								option Laboratorio 3
-								option Laboratorio 4
+							select#laboratorio.col-md-4.form-control(name="lab")
+								option(value='Laboratorio 1') Laboratorio 1
+								option(value='Laboratorio 2') Laboratorio 2
+								option(value='Laboratorio 3') Laboratorio 3
+								option(value='Laboratorio 4') Laboratorio 4
 						.form-group.form-inline.col-md-12
 							label.col-md-12.control-label Exámenes a realizar:
-							select#tblExamen.col-md-4.form-control
-		button#btnDescartar.col-md-3.btn(type='button') Descartar
-		button#btnGuardar.col-md-3.btn(type='submit') Guardar
+							select#tblExamen.col-md-4.form-control(name="examen")
+						input(type='hidden', name='codigo', value="#{muestra.codigo}")
+						input(type='hidden', name='tipoAnt', value="#{muestra.tipo}")
+						a(href='/operario/muestras')#btnDescartar.col-md-3.btn(type='button') Descartar
+						button#btnGuardar.col-md-3.btn(type='submit') Guardar
 append scripts
 	script
 		include ../../public/javascripts/operario.js

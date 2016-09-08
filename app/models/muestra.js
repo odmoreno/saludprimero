@@ -1,6 +1,8 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
+var deepPopulate = require('mongoose-deep-populate')(mongoose);
+
 var schema = new Schema({
     tipo: {type: String, required: true},
     fecha: {type: String, required: true},
@@ -20,6 +22,7 @@ var schema = new Schema({
     }]
 });
 
+schema.plugin(deepPopulate);
 module.exports = mongoose.model("muestradb", schema);
 
 

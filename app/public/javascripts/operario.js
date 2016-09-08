@@ -39,6 +39,7 @@ $("#muestras").change(cargarExamenes());
 }
 $("#muestras").change(cargarExamenes());
 
+
 function mostrarCentro(){
 	var xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function(){
@@ -62,7 +63,7 @@ function eliminarPaciente(){
 			var cedulas = $(this).closest("tr").children(':nth-child(3)').text();
 			$.ajax({
 				type: 'POST',
-				url: '/operario/pacientes/eliminar',
+				url: '/operario/pacientes/eliminar' ,
 				data: 'cedulas='+ cedulas
 			});
 			window.location.replace("/operario/pacientes");
@@ -93,11 +94,11 @@ function editarMuestra(){
 		$(".btnEditar").get(i).addEventListener('click', function(){
 			var codigo = $(this).closest("tr").children(':nth-child(1)').text();
 			$.ajax({
-				type: 'POST',
-				url: '/operario/muestras/editar_muestra',
-				data: 'codigo='+ codigo
+				type: 'GET',
+				url: '/operario/muestras/editar?codigo=' + codigo,
+				//data: {codigo: codigo}
 			});
-			//window.location.replace("/operario/muestras/editar");
+			window.location.replace("/operario/muestras/editar?codigo=" + codigo);
 		});
 	}
 }
