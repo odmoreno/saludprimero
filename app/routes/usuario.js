@@ -51,7 +51,7 @@ router.get('/perfil', isLoggedIn, function(req, res, next) {
     });*/
 });
 
-router.post('/perfil/editUser', function(req, res, next) {
+router.post('/perfil/editUser', isLoggedIn, function(req, res, next) {
         usuarioLog.findOne({ email : req.session['email']})
             .populate('paciente')
             .exec(function (err, user) {
@@ -95,7 +95,7 @@ router.get('/password', isLoggedIn, function(req, res, next) {
         });
 });
 
-router.post('/password/newPass', function(req, res, next){
+router.post('/password/newPass', isLoggedIn, function(req, res, next){
     //res.send(req.body.newpassword1);
     if (req.body.newpassword1 === req.body.newpassword2){//chequeo que la nueva contrasena y su validacion sean iguales
       usuarioPrueba = new usuarioLog({password:req.body.newpassword1});

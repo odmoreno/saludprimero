@@ -191,7 +191,7 @@ router.get('/reportes/estadistica', isLoggedIn, function(req, res, next){
     res.render('operario/graficos_res', {title: 'Resultados Estadisticos'});
 });
 
-router.post('/ingreso-muestras/nuevaMuestra', function (req, res) {
+router.post('/ingreso-muestras/nuevaMuestra', isLoggedIn, function (req, res) {
 
     console.log("POST Ingreso muestra");
     var lab = req.body.lab;
@@ -357,7 +357,9 @@ router.post('/ingreso-muestras/nuevoPaciente', isLoggedIn, function (req, res, d
     }
 );
 
-
+router.use('/', notLoggedIn, function (req, res, next) {
+    next();
+});
 
 /*
 router.use('/', notLoggedIn, function (req, res, next) {
