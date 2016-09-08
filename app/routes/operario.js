@@ -40,7 +40,7 @@ router.get('/pacientes', isLoggedIn, function(req, res, next) {
 
 });
 
-router.post('/pacientes/eliminar', function(req, res, next){
+router.post('/pacientes/eliminar',isLoggedIn, function(req, res, next){
     console.log(req.body.cedulas);
     Paciente.findOne({cedula:req.body.cedulas})
         .populate('user')
@@ -85,7 +85,7 @@ router.get('/muestras', isLoggedIn,function(req, res, next) {
 
 });
 
-router.get('/ingreso-muestras/centroslist', function(req,res,next){
+router.get('/ingreso-muestras/centroslist',isLoggedIn, function(req,res,next){
     Centro.find(function(err, centros){
         res.send(centros);
     });
@@ -106,7 +106,7 @@ router.get('/muestras/editar', isLoggedIn, function(req, res, next) {
 
 });
 
-router.post('/muestras/editar_muestra', function(req, res, next){
+router.post('/muestras/editar_muestra', isLoggedIn, function(req, res, next){
     console.log("post editar muestra");
     var paciente = req.body.cedula;
     console.log(paciente);
@@ -165,14 +165,14 @@ router.post('/muestras/editar_muestra', function(req, res, next){
     res.redirect('/operario/muestras');
 });
 
-router.get('/muestras/editar/centroslist', function(req,res,next){
+router.get('/muestras/editar/centroslist', isLoggedIn, function(req,res,next){
     Centro.find(function(err, centros){
         res.send(centros);
     });
 });
 
 
-router.post('/muestras/eliminar', function(req, res, next){
+router.post('/muestras/eliminar', isLoggedIn, function(req, res, next){
     console.log(req.body.codigo);
     Muestra.remove({codigo:req.body.codigo}).exec(function (err){
             if (err) return handleError(err);
@@ -275,7 +275,7 @@ router.post('/ingreso-muestras/nuevaMuestra', function (req, res) {
     res.redirect('/operario/muestras');
 
 });
-router.post('/ingreso-muestras/nuevoPaciente',  function (req, res, done) {
+router.post('/ingreso-muestras/nuevoPaciente', isLoggedIn, function (req, res, done) {
         console.log("POST:" + req.param('email'));
         var email = req.param('email');
         var errors = req.validationErrors();
@@ -324,11 +324,14 @@ router.post('/ingreso-muestras/nuevoPaciente',  function (req, res, done) {
                 paciente.email= email;
                 paciente.cedula = req.param('cedula');
                 paciente.email = email;
-
+                paciente.muestras = [];
                 paciente.save(function (err) {
                     if (err) return handleError(err);
+                    newUser.paciente = paciente._id;
+                    newUser.save();
                     console.log("funciona!");
                 });
+
 
             });
             var mailOptions = {
