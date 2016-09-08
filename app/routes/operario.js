@@ -42,10 +42,28 @@ router.get('/pacientes', isLoggedIn, function(req, res, next) {
 
 router.post('/pacientes/eliminar', function(req, res, next){
     console.log(req.body.cedulas);
-    Paciente.remove({cedula:req.body.cedulas}).exec(function (err){
+    Paciente.findOne({cedula:req.body.cedulas})
+        .populate('user')
+        .exec(function (err, paciente) {
             if (err) return handleError(err);
+            console.log("-------------FASE DE ELIMINACION-----------");
+            console.log(paciente);
+            console.log(paciente.user);
+            User.findOneAndRemove({_id : paciente.user._id} , function (err, response) {
+                console.log(response);
+                console.log("removido user");
+            });
+            Paciente.findOneAndRemove({_id : paciente._id}, function (err, response) {
+                console.log(response);
+                console.log("removido paciente");
+            });
+
         });
-})
+    res.redirect("operario/pacientes");
+    /*Paciente.remove({cedula:req.body.cedulas}).exec(function (err){
+            if (err) return handleError(err);
+        });*/
+});
 
 router.get('/ingreso-muestras', isLoggedIn, function(req, res, next) {
     var messages = req.flash('error');
@@ -81,7 +99,7 @@ router.post('/muestras/eliminar', function(req, res, next){
     Muestra.remove({codigo:req.body.codigo}).exec(function (err){
             if (err) return handleError(err);
     })
-})
+});
 
 router.get('/reportes', isLoggedIn, function(req, res, next) {
     res.render('operario/generar_reportes', { title: 'Generacion de Reportes' });
