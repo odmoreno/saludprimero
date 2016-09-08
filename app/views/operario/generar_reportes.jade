@@ -15,11 +15,11 @@ block content
 							| Total de Muestras Mensuales por Laboratorio
 						form.form-inline.fechaForm
 							.form-group.col-md-6
-								label.control-label(for='pickDesde') Desde:
-								input#pickDesde(type='text')
+								label#lblpickDesde.control-label(for='pickDesde', hidden='') Desde:
+								input#pickDesde(type='date', hidden='')
 							.form-group.col-md-6
-								label.control-label(for='pickHasta') Hasta:
-								input#pickHasta(type='text')
+								label#lblpickHasta.control-label(for='pickHasta', hidden='') Hasta:
+								input#pickHasta(type='date', hidden='')
 					if muestras
 						- var count1=0;
 						- var count2=0;

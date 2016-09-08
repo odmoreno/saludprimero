@@ -30,6 +30,7 @@ $(document).ready(function(){
 	eliminarPaciente();
 	eliminarMuestra();
 	editarMuestra();
+	escogerCampos();
 	generarGrafico();
 });
 
@@ -175,9 +176,18 @@ function generarGrafico(){
 	$("#btnGenerar").on("click", function(){
 		if($("#rad1").is(":checked")){
 			$("#chartContainer").empty();
+			$("#lblpickDesde").hide();
+			$("#pickDesde").hide();
+			$("#lblpickHasta").hide();
+			$("#pickHasta").hide();
 			mostrarGraficosPie();
 		}else if($("#rad2").is(":checked")){
 			$("#chartContainer").empty();
+			$("#lblpickDesde").show();
+			$("#pickDesde").show();
+			$("#lblpickHasta").show();
+			$("#pickHasta").show();
+			mostrarGraficosBarras();
 		}
 	});
 }
@@ -206,6 +216,50 @@ function mostrarGraficosPie(){
 				{ y: selector2, indexLabel: "Laboratorio 2" },
 				{ y: selector3, indexLabel: "Laboratorio 3" },
 				{ y: selector4, indexLabel: "Laboratorio 4"}
+			]
+		}
+		]
+	});
+	chart.render();
+}
+
+function escogerCampos(){
+	$("#rad2").change(function(){
+	if($("#rad2").is(":checked")){
+		$("#lblpickDesde").show();
+		$("#pickDesde").show();
+		$("#lblpickHasta").show();
+		$("#pickHasta").show();
+	}
+	});
+	$("#rad1").change(function(){
+		if($("#rad1").is(":checked")){
+			$("#lblpickDesde").hide();
+			$("#pickDesde").hide();
+			$("#lblpickHasta").hide();
+			$("#pickHasta").hide();
+		}
+	});
+}
+
+function mostrarGraficosBarras(){
+
+	var chart = new CanvasJS.Chart("chartContainer", {
+		theme: "theme2",//theme1
+		title:{
+			text: "Basic Column Chart - CanvasJS"              
+		},
+		animationEnabled: false,   // change to true
+		data: [              
+		{
+			// Change type to "bar", "area", "spline", "pie",etc.
+			type: "column",
+			dataPoints: [
+				{ label: "apple",  y: 10  },
+				{ label: "orange", y: 15  },
+				{ label: "banana", y: 25  },
+				{ label: "mango",  y: 30  },
+				{ label: "grape",  y: 28  }
 			]
 		}
 		]
