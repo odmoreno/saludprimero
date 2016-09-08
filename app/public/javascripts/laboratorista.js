@@ -41,7 +41,7 @@ function notificar(){
 				url: '/laboratorista/muestras/notificar',
 				data: 'codigo='+ codigo
 			});
-			window.location.replace("/laboratorista/muestras/");
+			window.location.replace("/laboratorista/muestras");
 		});
 	}
 }
@@ -57,7 +57,7 @@ function recibir(){
 				url: '/laboratorista/muestras/recibir',
 				data: 'codigo='+ codigo
 			});
-			window.location.replace("/laboratorista/muestras/");
+			window.location.replace("/laboratorista/muestras");
 		});
 	}
 }

@@ -30,7 +30,7 @@ $(document).ready(function(){
 	eliminarPaciente();
 	eliminarMuestra();
 	editarMuestra();
-	mostrarGraficosPie();
+	generarGrafico();
 });
 
 function init(){
@@ -170,6 +170,17 @@ function cargarExamenes(){
 	  }
 	});
 }*/
+
+function generarGrafico(){
+	$("#btnGenerar").on("click", function(){
+		if($("#rad1").is(":checked")){
+			$("#chartContainer").empty();
+			mostrarGraficosPie();
+		}else if($("#rad2").is(":checked")){
+			$("#chartContainer").empty();
+		}
+	});
+}
 
 function mostrarGraficosPie(){
 	var selector1 = parseInt($("#cont1").text());

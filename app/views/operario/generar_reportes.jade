@@ -7,11 +7,11 @@ block content
 				.form-group
 					.radio
 						label
-							input(type='radio', name='optradio')
+							input#rad1(type='radio', name='optradio')
 							| Total de Muestras Asignadas por Laboratorio
 					.radio
 						label
-							input(type='radio', name='optradio')
+							input#rad2(type='radio', name='optradio')
 							| Total de Muestras Mensuales por Laboratorio
 						form.form-inline.fechaForm
 							.form-group.col-md-6
@@ -38,7 +38,7 @@ block content
 						h1#cont2(hidden='')= count2
 						h1#cont3(hidden='')= count3
 						h1#cont4(hidden='')= count4
-				a(href='/operario/reportes/estadistica').col-md-4.col-md-offset-4.btn(type='button').btn-primary
+				a#btnGenerar(href='#').col-md-4.col-md-offset-4.btn(type='button').btn-primary
 					|Generar Gráfico
 		
 		#chartContainer
