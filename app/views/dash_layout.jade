@@ -2,9 +2,10 @@ extends ../node_modules/jade-bootstrap/_bootstrap
 
 append styles
 	style
+		include ../public/stylesheets/dashstyles.css
 		link(rel='stylesheet', type='text/css', href='https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css')
 		link(rel='stylesheet', type='text/css', href='//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css')
-		include ../public/stylesheets/dashstyles.css
+		
 		//link(rel="stylesheet" type="text/css", href="https://cdn.datatables.net/v/bs-3.3.6/dt-1.10.12/b-1.2.2/datatables.min.css")
 block body
 	body(data-spy="scroll",data-target=".scrollspy")
