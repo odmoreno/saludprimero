@@ -187,6 +187,12 @@ router.get('/reportes', isLoggedIn, function(req, res, next) {
     })
 });
 
+router.post('/reportes', isLoggedIn, function(req, res, next){
+    console.log('post reportesss')
+    console.log(req.body.mesdesde);
+    console.log(req.body.meshasta);
+});
+
 router.get('/reportes/estadistica', isLoggedIn, function(req, res, next){
     res.render('operario/graficos_res', {title: 'Resultados Estadisticos'});
 });

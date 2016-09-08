@@ -237,11 +237,25 @@ function escogerCampos(){
 }
 
 function mostrarGraficosBarras(){
+	var desde = $("#pickDesde").val();
+	var hasta = $("#pickHasta").val();
+	var mesdesde = desde[5]+desde[6];
+	var meshasta = hasta[5]+hasta[6];//validar mesdesde > meshasta
+	/*$("#btnGenerar").on('click', function(){
+			$.ajax({
+				type: 'POST',
+				url: '/operario/reportes',
+				data: 'mesdesde='+mesdesde+'&meshasta='+meshasta
+			});
+			window.location.replace("/operario/reportes");
+		});
+	*/
 
+	//esto va en el middleware
 	var chart = new CanvasJS.Chart("chartContainer", {
 		theme: "theme2",//theme1
 		title:{
-			text: "Basic Column Chart - CanvasJS"              
+			text: "Muestras de Laboratorios por mes"              
 		},
 		animationEnabled: false,   // change to true
 		data: [              
@@ -249,11 +263,18 @@ function mostrarGraficosBarras(){
 			// Change type to "bar", "area", "spline", "pie",etc.
 			type: "column",
 			dataPoints: [
-				{ label: "apple",  y: 10  },
-				{ label: "orange", y: 15  },
-				{ label: "banana", y: 25  },
-				{ label: "mango",  y: 30  },
-				{ label: "grape",  y: 28  }
+				{ label: "Enero",  y: 0  },
+				{ label: "Febrero", y: 0  },
+				{ label: "Marzo", y: 0  },
+				{ label: "Abril",  y: 0  },
+				{ label: "Mayo",  y: 5  },
+				{ label: "Junio",  y: 2  },
+				{ label: "Julio",  y: 0  },
+				{ label: "Agosto",  y: 2  },
+				{ label: "Septiembre",  y: 0  },
+				{ label: "Octubre",  y: 0  },
+				{ label: "Noviembre",  y: 0  },
+				{ label: "Diciembre",  y: 0  },
 			]
 		}
 		]
