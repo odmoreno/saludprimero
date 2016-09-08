@@ -176,17 +176,9 @@ function generarGrafico(){
 	$("#btnGenerar").on("click", function(){
 		if($("#rad1").is(":checked")){
 			$("#chartContainer").empty();
-			$("#lblpickDesde").hide();
-			$("#pickDesde").hide();
-			$("#lblpickHasta").hide();
-			$("#pickHasta").hide();
 			mostrarGraficosPie();
 		}else if($("#rad2").is(":checked")){
 			$("#chartContainer").empty();
-			$("#lblpickDesde").show();
-			$("#pickDesde").show();
-			$("#lblpickHasta").show();
-			$("#pickHasta").show();
 			mostrarGraficosBarras();
 		}
 	});
@@ -225,15 +217,17 @@ function mostrarGraficosPie(){
 
 function escogerCampos(){
 	$("#rad2").change(function(){
-	if($("#rad2").is(":checked")){
-		$("#lblpickDesde").show();
-		$("#pickDesde").show();
-		$("#lblpickHasta").show();
-		$("#pickHasta").show();
-	}
+		if($("#rad2").is(":checked")){
+			$("#chartContainer").empty();
+			$("#lblpickDesde").show();
+			$("#pickDesde").show();
+			$("#lblpickHasta").show();
+			$("#pickHasta").show();
+		}
 	});
 	$("#rad1").change(function(){
 		if($("#rad1").is(":checked")){
+			$("#chartContainer").empty();
 			$("#lblpickDesde").hide();
 			$("#pickDesde").hide();
 			$("#lblpickHasta").hide();
