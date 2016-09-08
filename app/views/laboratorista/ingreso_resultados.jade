@@ -12,6 +12,7 @@ block content
 								th Fecha Toma Muestra
 								th Tipo de Muestra
 								th Paciente
+								th Estado
 								th Recibir
 								th Notificar
 								th Resultados
@@ -24,6 +25,7 @@ block content
 										td=muestra.fecha
 										td=muestra.tipo
 										td #{muestra.paciente.nombres} #{muestra.paciente.apellidos}
+										td=muestra.estado
 										td
 											if muestra.estado == "Pendiente"
 												button.btnRecibido.btn(type="submit") Recibir
