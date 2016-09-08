@@ -180,7 +180,15 @@ router.post('/muestras/eliminar', function(req, res, next){
 });
 
 router.get('/reportes', isLoggedIn, function(req, res, next) {
-    res.render('operario/generar_reportes', { title: 'Generacion de Reportes' });
+    Muestra.find().exec(function(err, muestras){
+        res.render('operario/generar_reportes', { title: 'Generacion de Reportes',
+        muestras: muestras});
+        console.log(muestras);
+    })
+});
+
+router.get('/reportes/estadistica', isLoggedIn, function(req, res, next){
+    res.render('operario/graficos_res', {title: 'Resultados Estadisticos'});
 });
 
 router.post('/ingreso-muestras/nuevaMuestra', function (req, res) {

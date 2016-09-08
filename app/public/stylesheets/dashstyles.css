@@ -100,6 +100,7 @@ li:hover{
 .btn-primary {
     background: #1075bc;
     color: #ffffff;
+    margin-top: 2%;
 }
  
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
@@ -146,4 +147,11 @@ li:hover{
 #agregar{
   margin-bottom: 2%;
   margin-top: 2%;
+}
+
+#chartContainer, .canvas{
+  height: 300px;
+  width: 300px;
+  margin:auto;
+  margin-bottom: 2%;
 }

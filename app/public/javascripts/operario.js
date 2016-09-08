@@ -30,6 +30,7 @@ $(document).ready(function(){
 	eliminarPaciente();
 	eliminarMuestra();
 	editarMuestra();
+	mostrarGraficosPie();
 });
 
 function init(){
@@ -154,4 +155,49 @@ function cargarExamenes(){
 		$row1.attr("name","examen1");
 		tabla.append($row1);
 	}
+}
+
+/*function mostrarGraficosPie(){
+	var selector1 = parseInt($("#cont1").text());
+	var selector2 = parseInt($("#cont2").text());
+	var selector3 = parseInt($("#cont3").text());
+	var selector4 = parseInt($("#cont4").text());
+	var data = {series: [selector1, selector2, selector3, selector4]};
+	var suma = selector1+selector2+selector3+selector4;
+	new Chartist.Pie('.ct-chart', data, {
+	  labelInterpolationFnc: function(value) {
+	    return Math.round(value / suma * 100) + '%';
+	  }
+	});
+}*/
+
+function mostrarGraficosPie(){
+	var selector1 = parseInt($("#cont1").text());
+	var selector2 = parseInt($("#cont2").text());
+	var selector3 = parseInt($("#cont3").text());
+	var selector4 = parseInt($("#cont4").text());
+	var chart = new CanvasJS.Chart("chartContainer",
+	{
+		title:{
+			text: "Muestras por Laboratorio"
+		},
+		legend: {
+			maxWidth: 200,
+			itemWidth: 100
+		},
+		data: [
+		{
+			type: "pie",
+			showInLegend: true,
+			legendText: "{indexLabel}",
+			dataPoints: [
+				{ y: selector1, indexLabel: "Laboratorio 1" },
+				{ y: selector2, indexLabel: "Laboratorio 2" },
+				{ y: selector3, indexLabel: "Laboratorio 3" },
+				{ y: selector4, indexLabel: "Laboratorio 4"}
+			]
+		}
+		]
+	});
+	chart.render();
 }
